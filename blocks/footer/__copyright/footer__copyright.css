@@ -1,4 +1,4 @@
-.footer__text {
+.footer__copyright {
   min-width: 318px;
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 360px) {
-  .footer__text {
+  .footer__copyright {
     min-width: 100%;
     font-size: 14px;
     line-height: 17px;
