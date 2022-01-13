@@ -1,0 +1,15 @@
+.root {
+  background-color: #000000;
+  color: #FFFFFF;
+  padding-top: 45px;
+  padding-bottom: 60px;
+  text-rendering: optimizeLegibility;
+  border: 1px solid red;
+}
+
+@media screen and (max-width: 320px) {
+  .root {
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+}
