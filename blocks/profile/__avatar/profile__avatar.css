@@ -1,3 +1,15 @@
 .profile__avatar {
-  
+  width: 168.75px;
+  height: 127.5px;
+  display: flex;
+  align-items: center;
+  object-fit: contain;
+  margin: -3.75px 0 -3.75px -22.5px;
+  /*border: 1px solid red;*/
+}
+
+@media screen and (max-width: 644px) {
+  .profile__avatar {
+    margin-left: 0;
+  }
 }

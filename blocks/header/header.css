@@ -9,3 +9,9 @@
   margin: auto;
   /*border: 1px solid red;*/
 }
+
+@media screen and (max-width: 644px) {
+  .header {
+    min-height: 56px;
+  }
+}

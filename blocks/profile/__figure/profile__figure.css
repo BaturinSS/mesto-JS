@@ -1,3 +1,18 @@
 .profile__figure {
-  
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  /*border: 1px solid rgb(187, 255, 0);*/
+}
+
+@media screen and (max-width: 644px) {
+  .profile__figure {
+    max-width: 282px;
+    gap: 22.25px 0;
+    margin: auto;
+    justify-content: center;
+  }
 }
