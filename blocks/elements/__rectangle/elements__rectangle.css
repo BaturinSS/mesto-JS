@@ -1,6 +1,6 @@
 .elements__rectangle {
-  width: 282px;
-  height: 361px;
+  min-width: 282px;
+  min-height: 361px;
   position: relative;
   margin: 0;
   padding: 0;
@@ -9,4 +9,22 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   /*border: 1px solid red;*/
+}
+
+@media screen and (max-width: 919px) {
+  .elements__rectangle {
+    min-height: calc((361 / 282) * 46vw);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .elements__rectangle {
+    min-height: calc((361 / 282) * 80vw);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .elements__rectangle {
+    min-height: 361px;
+  }
 }

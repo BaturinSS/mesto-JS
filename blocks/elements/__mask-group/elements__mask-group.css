@@ -7,3 +7,17 @@
   object-fit: cover;
   /*border: 1px solid red;*/
 }
+
+@media screen and (max-width: 919px) {
+  .elements__mask-group {
+    min-height: calc((282 / 282) * 50vw);
+    min-width: calc((282 / 282) * 50vw);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .elements__mask-group {
+    min-height: calc((282 / 282) * 100vw);
+    min-width: calc((282 / 282) * 100vw);
+  }
+}
