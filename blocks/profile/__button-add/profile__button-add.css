@@ -10,7 +10,7 @@
   background-color: #000000;
 }
 
-@media screen and (max-width: 644px) {
+@media screen and (max-width: 670px) {
   .profile__button-add {
     width: 100%;
   }
