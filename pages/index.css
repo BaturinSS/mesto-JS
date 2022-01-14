@@ -20,7 +20,6 @@
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__cards/elements__cards.css);
-@import url(../blocks/elements/__element/elements__element.css);
 @import url(../blocks/elements/__group/elements__group.css);
 @import url(../blocks/elements/__mask-group/elements__mask-group.css);
 @import url(../blocks/elements/__rectangle/elements__rectangle.css);
