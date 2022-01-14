@@ -5,18 +5,13 @@
   padding: 0;
   margin: auto;
   margin-top: 67px;
-  /*border: 1px solid red;*/
+  border: 1px solid red;
 }
 
 @media screen and (max-width: 920px) {
   .footer {
     margin-left: 19px;
     margin-right: 19px;
-  }
-}
-
-@media screen and (max-width: 670px) {
-  .footer {
     margin-top: 48px;
   }
 }

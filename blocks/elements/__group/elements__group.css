@@ -1,3 +1,13 @@
 .elements__group {
-  
+  position: absolute;
+  width: 22px;
+  height: 19px;
+  display: flex;
+  border: none;
+  right: 20px;
+  bottom: 30px;
+  padding: 0;
+  margin: 0;
+  background-color: skyblue;
+  /*border: 1px solid red;*/
 }

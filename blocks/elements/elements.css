@@ -1,3 +1,17 @@
 .elements {
-  
+  max-width: 880px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  margin: auto;
+  margin-top: 51px;
+  border: 1px solid red;
+}
+
+@media screen and (max-width: 920px) {
+  .elements {
+    margin-top: 36px;
+    margin-left: 19px;
+    margin-right: 19px;
+  }
 }
