@@ -12,3 +12,12 @@
   color: #FFFFFF;
   /*border: 1px solid red;*/
 }
+
+@media screen and (max-width: 550px) {
+  .popup__save {
+    width: 74px;
+    height: 18px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
