@@ -13,21 +13,6 @@
 
 @media screen and (max-width: 917px) {
   .elements__mask-group {
-    min-height: calc((282 / 282) * 50vw);
     min-width: 100%;
-    /*min-width: calc((282 / 282) * 47vw);*/
-  }
-}
-
-@media screen and (max-width: 618px) {
-  .elements__mask-group {
-    min-height: calc((282 / 282) * 105vw);
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .elements__mask-group {
-    max-height: 282px;
-    max-width: 282px;
   }
 }
