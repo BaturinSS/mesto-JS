@@ -1,7 +1,10 @@
 .elements__rectangle {
   max-width: 282px;
-  max-height: 361px;
+  min-height: 361px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -11,13 +14,15 @@
   /*border: 1px solid red;*/
 }
 
-@media screen and (max-width: 919px) {
+@media screen and (max-width: 917px) {
   .elements__rectangle {
     min-height: calc((361 / 282) * 46vw);
+    max-width: none;
+    max-height: none;
   }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 618px) {
   .elements__rectangle {
     min-height: calc((361 / 282) * 80vw);
   }
