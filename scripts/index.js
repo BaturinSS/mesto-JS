@@ -17,7 +17,9 @@ function ClosePopupEdit(event) {
 popupEditProfileClose.addEventListener('click', ClosePopupEdit)
 
 popupEditProfile.addEventListener('click', ClosePopupEdit)
+
 //================== Открытие и закрытие Popup Edit =============================
+
 const elementsGroupButtonHeart = document.querySelectorAll('.elements__group')
 
 elementsGroupButtonHeart.forEach(function(card) {
@@ -25,4 +27,5 @@ elementsGroupButtonHeart.forEach(function(card) {
     event.target.classList.add('elements__group_active')
   })
 })
-//================== Смена цвета сердечка на карточке при нажатии ===============
+
+//============== Смена цвета сердечка на карточке при нажатии ====================
