@@ -14,7 +14,7 @@ profileOpenPopupButtonEdit.addEventListener('mousedown', openPopupEdit)
 
 function closePopupEdit(event) {
   if (event.which === 1) {
-    if (event.currentTarget === event.target || (popupEditProfileClose === event.currentTarget)) {
+    if (event.currentTarget === event.target || popupEditProfileClose === event.currentTarget) {
       popupEditProfile.classList.remove('popup-edit_opened')
       console.log(event)
     }
