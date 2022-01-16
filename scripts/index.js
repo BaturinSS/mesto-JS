@@ -4,19 +4,26 @@ const popupEditProfileClose = document.querySelector('.popup-edit__close')
 
 const popupEditProfile = document.querySelector('.popup-edit')
 
-profileOpenPopupButtonEdit.addEventListener('click', function() {
-  popupEditProfile.classList.add('popup-edit_opened')
-})
-
-function ClosePopupEdit(event) {
-  if (event.currentTarget === event.target || (popupEditProfileClose === event.currentTarget)) {
-    popupEditProfile.classList.remove('popup-edit_opened')
+function openPopupEdit(event) {
+  if (event.which === 1) {
+    popupEditProfile.classList.add('popup-edit_opened')
   }
 }
 
-popupEditProfileClose.addEventListener('click', ClosePopupEdit)
+profileOpenPopupButtonEdit.addEventListener('mousedown', openPopupEdit)
 
-popupEditProfile.addEventListener('click', ClosePopupEdit)
+function closePopupEdit(event) {
+  if (event.which === 1) {
+    if (event.currentTarget === event.target || (popupEditProfileClose === event.currentTarget)) {
+      popupEditProfile.classList.remove('popup-edit_opened')
+      console.log(event)
+    }
+  }
+}
+
+popupEditProfileClose.addEventListener('mousedown', closePopupEdit)
+
+popupEditProfile.addEventListener('mousedown', closePopupEdit)
 
 //================== Открытие и закрытие Popup Edit =============================
 
