@@ -1,6 +1,6 @@
 .profile__info {
   position: relative;
-  max-width: 336px;
+  width: 336px;
   display: flex;
   flex-direction: column;
   justify-content: center;
