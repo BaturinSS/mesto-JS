@@ -4,11 +4,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0;
   padding: 0;
   margin: auto;
-  Border-bottom: 1px solid;
-  Border-color: rgba(84, 84, 84, 0.7);
+  border-bottom: 1px solid;
+  border-color: rgba(84, 84, 84, 0.7);
   /*border: 1px solid red;*/
 }
 
