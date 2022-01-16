@@ -5,6 +5,12 @@
   background: #000000;
   border-radius: 2px;
   border: none;
+  transition: 0.3s;
+}
+
+.popup__save-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 550px) {
