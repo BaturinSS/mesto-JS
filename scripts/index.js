@@ -24,7 +24,7 @@ const elementsGroupButtonHeart = document.querySelectorAll('.elements__group')
 
 elementsGroupButtonHeart.forEach(function(card) {
   card.addEventListener('click', function(event) {
-    event.target.classList.add('elements__group_active')
+    event.target.classList.toggle('elements__group_active')
   })
 })
 
