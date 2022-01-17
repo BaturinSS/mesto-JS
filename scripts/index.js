@@ -24,11 +24,11 @@ function closePopupEdit(event) {
   if (event.which === 1) {
     if (event.currentTarget === event.target || popupEditProfileClose === event.currentTarget) {
       popupEditProfile.classList.remove('popup-edit_opened');
-    }
-  }
+    };
+  };
 };
 function getFormValue(event) {
-  event.preventDefault()
+  event.preventDefault();
   profileName.textContent = popupEditName.value;
   profileSubtitle.textContent = popupEditComment.value;
   popupEditProfile.classList.remove('popup-edit_opened');
