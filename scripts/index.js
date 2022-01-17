@@ -18,7 +18,7 @@ function openPopupEdit(event) {
 elementsGroupButtonHeart.forEach(function(card) {
   card.addEventListener('click', function(event) {
     event.target.classList.toggle('elements__group_active');
-  })
+  });
 });
 function closePopupEdit(event) {
   if (event.which === 1) {
