@@ -10,7 +10,7 @@ const popupSaveButton = document.querySelector('.popup__save-button');
 const formPopupEdit = document.querySelector('.popup-edit__block');
 function openPopupEdit(event) {
   if (event.which === 1) {
-    popupEditProfile.classList.add('popup-edit_opened')
+    popupEditProfile.classList.add('popup-edit_opened');
     popupEditName.value = profileName.textContent;
     popupEditComment.value = profileSubtitle.textContent;
   };
@@ -18,7 +18,7 @@ function openPopupEdit(event) {
 elementsGroupButtonHeart.forEach(function(card) {
   card.addEventListener('click', function(event) {
     event.target.classList.toggle('elements__group_active');
-  });
+  })
 });
 function closePopupEdit(event) {
   if (event.which === 1) {
