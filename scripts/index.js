@@ -11,27 +11,27 @@ const formPopupEdit = document.querySelector('.popup-edit__block');
 function openPopupEdit(event) {
   if (event.which === 1) {
     popupEditProfile.classList.add('popup-edit_opened')
-    popupEditName.value = profileName.textContent
-    popupEditComment.value = profileSubtitle.textContent
-  }
+    popupEditName.value = profileName.textContent;
+    popupEditComment.value = profileSubtitle.textContent;
+  };
 };
 elementsGroupButtonHeart.forEach(function(card) {
   card.addEventListener('click', function(event) {
-    event.target.classList.toggle('elements__group_active')
-  })
+    event.target.classList.toggle('elements__group_active');
+  });
 });
 function closePopupEdit(event) {
   if (event.which === 1) {
     if (event.currentTarget === event.target || popupEditProfileClose === event.currentTarget) {
-      popupEditProfile.classList.remove('popup-edit_opened')
+      popupEditProfile.classList.remove('popup-edit_opened');
     }
   }
 };
 function getFormValue(event) {
   event.preventDefault()
-  profileName.textContent = popupEditName.value
-  profileSubtitle.textContent = popupEditComment.value
-  popupEditProfile.classList.remove('popup-edit_opened')
+  profileName.textContent = popupEditName.value;
+  profileSubtitle.textContent = popupEditComment.value;
+  popupEditProfile.classList.remove('popup-edit_opened');
 };
 popupEditProfileClose.addEventListener('mousedown', closePopupEdit);
 profileOpenPopupButtonEdit.addEventListener('mousedown', openPopupEdit);
