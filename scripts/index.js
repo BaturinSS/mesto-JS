@@ -17,11 +17,15 @@ function closePopupEdit() {
   popupEditProfile.classList.remove('popup-edit_opened');
 }
 function getFormValue(event) {
-  event.preventDefault();
-  profileName.textContent = popupEditName.value;
-  profileSubtitle.textContent = popupEditComment.value;
-  closePopupEdit();
+  if (popupEditProfileClose === event.currentTarget) {
+    event.preventDefault();
+  } else {
+    event.preventDefault();
+    profileName.textContent = popupEditName.value;
+    profileSubtitle.textContent = popupEditComment.value;
+    closePopupEdit();
+  }
 }
 profileOpenPopupButtonEdit.addEventListener('click', openPopupEdit);
 popupEditProfileClose.addEventListener('click', closePopupEdit);
-formPopupEdit.addEventListener('submit', getFormValue);
+//formPopupEdit.addEventListener('submit', getFormValue);
