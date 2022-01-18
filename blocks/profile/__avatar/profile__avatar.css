@@ -5,10 +5,10 @@
   align-items: center;
   object-fit: contain;
   margin: -3.75px 0 -3.75px -22.5px;
-  /*border: 1px solid red;*/
+  /*border: 1px solid rgb(21, 223, 213);*/
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 888px) {
   .profile__avatar {
     margin-left: 0;
   }

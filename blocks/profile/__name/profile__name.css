@@ -1,5 +1,6 @@
 .profile__name {
-  max-width: 294px;
+  max-width: 500px;
+  /*height: 39px;*/
   margin: 0;
   padding: 0;
   font-family: "Inter", Arial, sans-serif;
@@ -11,15 +12,21 @@
   white-space: nowrap;
   overflow: hidden;
   color: #FFFFFF;
-  /*border: 1px solid red;*/
+  /*border: 1px solid rgb(22, 173, 29);*/
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 888px) {
   .profile__name {
-    max-width: 238px;
+    max-width: 70%;
     text-align: center;
     font-size: 27px;
     line-height: 33px;
-    gap: 10px 14px;
+    margin-left: 37px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__name {
+    max-width: 189px;
   }
 }
