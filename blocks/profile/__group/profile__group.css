@@ -6,7 +6,7 @@
   align-items: flex-end;
   margin-top: 22px;
   gap: 18px;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 @media screen and (max-width: 888px) {

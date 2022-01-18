@@ -12,7 +12,7 @@
   white-space: nowrap;
   overflow: hidden;
   color: #FFFFFF;
-  border: 1px solid rgb(22, 173, 29);
+  /*border: 1px solid rgb(22, 173, 29);*/
 }
 
 @media screen and (max-width: 888px) {
