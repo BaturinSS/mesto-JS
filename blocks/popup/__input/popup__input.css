@@ -12,11 +12,10 @@
   color: #000000;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
   /*border: 1px solid red;*/
 }
 
-@media screen and (max-width: 550px) {
-  .popup__input {
-    width: 238px;
-  }
+.popup__input:nth-child(1) {
+  margin-top: 0;
 }
