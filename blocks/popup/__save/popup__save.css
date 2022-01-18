@@ -1,4 +1,4 @@
-.popup-edit__save {
+.popup__save {
   width: 109px;
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .popup-edit__save {
+  .popup__save {
     width: 74px;
     font-size: 14px;
     line-height: 17px;

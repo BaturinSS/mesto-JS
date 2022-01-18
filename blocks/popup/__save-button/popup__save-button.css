@@ -1,4 +1,4 @@
-.popup-edit__save-button {
+.popup__save-button {
   height: 50px;
   margin: 48px 36px 0 36px;
   padding: 0;
@@ -8,13 +8,13 @@
   transition: 0.3s;
 }
 
-.popup-edit__save-button:hover {
+.popup__save-button:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
 @media screen and (max-width: 550px) {
-  .popup-edit__save-button {
+  .popup__save-button {
     height: 46px;
     margin-top: 45px;
     margin-left: 22px;
