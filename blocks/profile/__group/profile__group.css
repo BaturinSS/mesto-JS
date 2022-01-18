@@ -11,8 +11,9 @@
 
 @media screen and (max-width: 888px) {
   .profile__group {
-    justify-content: space-between;
+    max-width: 100%;
     align-items: center;
+    justify-content: center;
     margin-top: 0;
     gap: 10px;
   }
