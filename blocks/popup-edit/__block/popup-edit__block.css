@@ -1,7 +1,6 @@
 .popup-edit__block {
   position: relative;
   width: 430px;
-  height: 330px;
   padding: 0;
   margin: 0;
   display: flex;
@@ -15,6 +14,5 @@
 @media screen and (max-width: 550px) {
   .popup-edit__block {
     width: 282px;
-    height: 322px;
   }
 }
