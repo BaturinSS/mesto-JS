@@ -3,14 +3,14 @@ const popupEditProfileClose = document.querySelector('.popup__close');
 const popupEditProfile = document.querySelector('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const popupEditName = document.querySelector('.popup__name');
-const popupEditComment = document.querySelector('.popup__comment');
-const formPopupEdit = document.querySelector('.popup__block');
+const popupEditName = document.getElementsByName('name')[0];
+const popupEditAboutMe = document.getElementsByName('aboutMe')[0];
+const formPopupEdit = document.querySelector('.popup__form');
 function openPopupEdit(event) {
   if (event.which === 1) {
     popupEditProfile.classList.add('popup_opened');
     popupEditName.value = profileName.textContent;
-    popupEditComment.value = profileSubtitle.textContent;
+    popupEditAboutMe.value = profileSubtitle.textContent;
   }
 }
 function closePopupEdit() {
@@ -22,7 +22,7 @@ function getFormValue(event) {
   } else {
     event.preventDefault();
     profileName.textContent = popupEditName.value;
-    profileSubtitle.textContent = popupEditComment.value;
+    profileSubtitle.textContent = popupEditAboutMe.value;
     closePopupEdit();
   }
 }
