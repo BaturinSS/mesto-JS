@@ -1,11 +1,6 @@
 .elements__title {
   max-width: 100%;
-  margin: 0;
-  margin-left: 21px;
-  margin-right: 62px;
-  margin-bottom: 26px;
-  margin-top: 25px;
-  padding-bottom: 5px;
+  margin: 24px 62px 26px 21px;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;

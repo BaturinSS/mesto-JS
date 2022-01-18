@@ -1,9 +1,17 @@
 .profile__ellipse {
   width: 120px;
   height: 120px;
-  margin-left: 22.5px;
+  margin: 0;
+  margin-right: 27.2px;
+  padding: 0;
   border-radius: 100%;
   background: no-repeat url(../../../images/profile__avatar.png);
-  background-size: contain;
+  background-size: cover;
   /*border: 1px solid rgb(186, 24, 201);*/
+}
+
+@media screen and (max-width: 735px) {
+  .profile__ellipse  {
+    margin-right: 0;
+  }
 }

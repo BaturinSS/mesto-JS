@@ -2,14 +2,16 @@
   position: absolute;
   width: 22px;
   height: 19px;
-  border: none;
   right: 20px;
   bottom: 30px;
   padding: 0;
   margin: 0;
   background-image: url(../../../images/heart.svg);
-  background: none;
+  background-color: #FFFFFF;
+  background-size: contain;
+  background-position: center;
   transition: 0.5s;
+  border: none;
   /*border: 1px solid red;*/
 }
 

@@ -1,6 +1,6 @@
 .root {
-  background-color: #000000;
-  color: #FFFFFF;
+  min-width: 320px;
+  background: #000000;
   padding-top: 45px;
   padding-bottom: 60px;
   text-rendering: optimizeLegibility;
