@@ -1,20 +1,20 @@
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');
-const popupEditProfileClose = document.querySelector('.popup-edit__close');
-const popupEditProfile = document.querySelector('.popup-edit');
+const popupEditProfileClose = document.querySelector('.popup__close');
+const popupEditProfile = document.querySelector('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const popupEditName = document.querySelector('.popup-edit__name');
-const popupEditComment = document.querySelector('.popup-edit__comment');
-const formPopupEdit = document.querySelector('.popup-edit__block');
+const popupEditName = document.querySelector('.popup__name');
+const popupEditComment = document.querySelector('.popup__comment');
+const formPopupEdit = document.querySelector('.popup__block');
 function openPopupEdit(event) {
   if (event.which === 1) {
-    popupEditProfile.classList.add('popup-edit_opened');
+    popupEditProfile.classList.add('popup_opened');
     popupEditName.value = profileName.textContent;
     popupEditComment.value = profileSubtitle.textContent;
   }
 }
 function closePopupEdit() {
-  popupEditProfile.classList.remove('popup-edit_opened');
+  popupEditProfile.classList.remove('popup_opened');
 }
 function getFormValue(event) {
   if (popupEditProfileClose === event.currentTarget) {

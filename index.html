@@ -79,13 +79,15 @@
       <p class="footer__copyright">© 2022. Батурин Сергей</p>
     </footer>
     <div class="popup">
-      <form name="information" class="popup__block" action="#" method="get">
+      <div class="popup__container">
         <button type="button" class="popup__close"><img class="popup__image-cross" src="./images/image-cross.svg" alt="иконка"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <div class="popup__line"><input class="popup__name" required placeholder="Имя" type="text" name="name"></div>
-        <div class="popup__line"><input class="popup__comment" placeholder="О себе" type="text" name="comment"></div>
-        <button type="submit" class="popup__save-button"><span class="popup__save">Сохранить</span></button>
-      </form>
+        <form name="information" class="popup__form" action="#" method="get">
+          <input class="popup__input" required placeholder="Имя" type="text" name="name">
+          <input class="popup__input" placeholder="О себе" type="text" name="aboutMe">
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
     </div>
   </div>
   <script src="./scripts/index.js"></script>
