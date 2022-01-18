@@ -1,16 +1,16 @@
 .profile__figure {
+  max-width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   overflow: hidden;
-  /*border: 1px solid rgb(187, 255, 0);*/
+  border: 1px solid rgb(15, 216, 75);
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 888px) {
   .profile__figure {
-    max-width: 282px;
+    max-width: 100%;
     gap: 22.25px 0;
     margin: auto;
     justify-content: center;
