@@ -22,6 +22,11 @@
     font-size: 27px;
     line-height: 33px;
     margin-left: 37px;
-    /*gap: 10px 14px;*/
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__name {
+    max-width: 189px;
   }
 }
