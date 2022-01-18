@@ -9,9 +9,8 @@
   /*border: 1px solid red;*/
 }
 
-@media screen and (max-width: 888px) {
+@media screen and (max-width: 735px) {
   .profile__group {
-    max-width: 100%;
     align-items: center;
     justify-content: center;
     margin-top: 0;

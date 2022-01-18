@@ -6,7 +6,7 @@
   border: 0;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 500px) {
   .profile__image-pen {
     width: 7.5px;
     height: 7.5px;
