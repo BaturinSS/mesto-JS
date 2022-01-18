@@ -11,9 +11,9 @@
   /*border: 1px solid red;*/
 }
 
-@media screen and (max-width: 847px) {
+@media screen and (max-width: 899px) {
   .profile {
-    margin: 42px 19px 0;
     justify-content: center;
+    margin: 42px 19px 0;
   }
 }
