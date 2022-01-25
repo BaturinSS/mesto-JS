@@ -1,9 +1,8 @@
 .root {
-  background-color: #000000;
   padding-top: 45px;
   padding-bottom: 60px;
   text-rendering: optimizeLegibility;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 @media screen and (max-width: 670px) {
