@@ -6,6 +6,41 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupEditName = document.getElementsByName('name')[0];
 const popupEditAboutMe = document.getElementsByName('aboutMe')[0];
 const formPopupEdit = document.querySelector('.popup__form');
+const elementsTemplate = document.querySelector('#elements-template').content;
+const elementsCards = document.querySelector('.elements__cards');
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+initialCards.forEach((el) => creatureElementCard(el));
+function creatureElementCard(el) {
+  const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
+  elementCard.querySelector('.elements__mask-group').src = el.link;
+  elementCard.querySelector('.elements__title').textContent = el.name;
+  elementsCards.append(elementCard);
+}
 const elementsGroupButtonHeart = document.querySelectorAll('.elements__group');
 function openPopupEdit(event) {
   if (event.which === 1) {
