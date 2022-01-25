@@ -42,20 +42,14 @@ function creatureElementCard(el) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
   elementCard.querySelector('.elements__mask-group').src = el.link;
   elementCard.querySelector('.elements__title').textContent = el.name;
-  elementsCards.prepend(elementCard);
-}
-const elementsGroupButtonDelete = document.querySelectorAll('.elements__delete');
-elementsGroupButtonDelete.forEach(function(basket) {
-  basket.addEventListener('click', function(event) {
+  elementCard.querySelector('.elements__delete').addEventListener('click', function(event) {
     event.currentTarget.closest('.elements__element').remove();
   })
-})
-const elementsGroupButtonHeart = document.querySelectorAll('.elements__group');
-elementsGroupButtonHeart.forEach(function(card) {
-  card.addEventListener('click', function(event) {
+  elementCard.querySelector('.elements__group').addEventListener('click', function(event) {
     event.target.classList.toggle('elements__group_active');
   })
-})
+  elementsCards.prepend(elementCard);
+}
 function openPopupEdit(event) {
   if (event.target === profileOpenPopupButtonEdit) {
     popupEditProfile.classList.add('popup_opened');
