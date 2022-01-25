@@ -8,6 +8,7 @@
   background: none;
   transition: 0.3s;
   border: none;
+  z-index: 3;
   /*border: 1px solid red;*/
 }
 

@@ -12,6 +12,10 @@
   /*border: 1px solid red;*/
 }
 
+.elements__mask-group:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 917px) {
   .elements__mask-group {
     min-width: 100%;
