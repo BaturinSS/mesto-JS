@@ -41,7 +41,18 @@ function creatureElementCard(el) {
   elementCard.querySelector('.elements__title').textContent = el.name;
   elementsCards.append(elementCard);
 }
+const elementsGroupButtonDelete = document.querySelectorAll('.elements__delete');
+elementsGroupButtonDelete.forEach(function(basket) {
+  basket.addEventListener('click', function(event) {
+    event.currentTarget.closest('.elements__element').remove();
+  })
+})
 const elementsGroupButtonHeart = document.querySelectorAll('.elements__group');
+elementsGroupButtonHeart.forEach(function(card) {
+  card.addEventListener('click', function(event) {
+    event.target.classList.toggle('elements__group_active');
+  })
+})
 function openPopupEdit(event) {
   if (event.which === 1) {
     popupEditProfile.classList.add('popup_opened');
@@ -58,11 +69,6 @@ function getFormValue(event) {
   profileSubtitle.textContent = popupEditAboutMe.value;
   closePopupEdit();
 }
-elementsGroupButtonHeart.forEach(function(card) {
-  card.addEventListener('click', function(event) {
-    event.target.classList.toggle('elements__group_active');
-  })
-})
 profileOpenPopupButtonEdit.addEventListener('click', openPopupEdit);
 popupEditProfileClose.addEventListener('click', closePopupEdit);
 formPopupEdit.addEventListener('submit', getFormValue);
