@@ -52,13 +52,13 @@ function creatureElementCard(el) {
 }
 function openPopupEdit(event) {
   if (event.target === profileOpenPopupButtonEdit) {
-    popupEditProfile.classList.add('popup_opened');
+    popupEditProfile.classList.add('popup-opened');
     popupTitle.textContent = 'Редактировать профиль';
     formPopupSubmit.textContent = 'Сохранить';
     popupEditName.value = profileName.textContent;
     popupEditAboutMe.value = profileSubtitle.textContent;
   } else {
-    popupEditProfile.classList.add('popup_opened');
+    popupEditProfile.classList.add('popup-opened');
     popupTitle.textContent = 'Новое место';
     formPopupSubmit.textContent = 'Создать';
     popupEditName.value = '';
@@ -68,7 +68,7 @@ function openPopupEdit(event) {
   }
 }
 function closePopupEdit() {
-  popupEditProfile.classList.remove('popup_opened');
+  popupEditProfile.classList.remove('popup-opened');
 }
 function getFormValue(event) {
   event.preventDefault();

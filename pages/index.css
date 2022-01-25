@@ -37,10 +37,13 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__image-cross/popup__image-cross.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__subtitle/popup__subtitle.css);
-@import url(../blocks/popup/__image/popup__image.css);
-@import url(../blocks/popup/__box/popup__box.css);
+
+@import url(../blocks/popup-zoom/__box/popup-zoom__box.css);
+@import url(../blocks/popup-zoom/__image/popup-zoom__image.css);
+@import url(../blocks/popup-zoom/__subtitle/popup-zoom__subtitle.css);
+@import url(../blocks/popup-zoom/popup-zoom.css);
+
+@import url(../blocks/popup-opened/popup-opened.css);
