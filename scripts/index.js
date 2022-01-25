@@ -6,6 +6,7 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupEditName = document.getElementsByName('name')[0];
 const popupEditAboutMe = document.getElementsByName('aboutMe')[0];
 const formPopupEdit = document.querySelector('.popup__form');
+const elementsGroupButtonHeart = document.querySelectorAll('.elements__group');
 function openPopupEdit(event) {
   if (event.which === 1) {
     popupEditProfile.classList.add('popup_opened');
@@ -22,6 +23,11 @@ function getFormValue(event) {
   profileSubtitle.textContent = popupEditAboutMe.value;
   closePopupEdit();
 }
+elementsGroupButtonHeart.forEach(function(card) {
+  card.addEventListener('click', function(event) {
+    event.target.classList.toggle('elements__group_active');
+  })
+})
 profileOpenPopupButtonEdit.addEventListener('click', openPopupEdit);
 popupEditProfileClose.addEventListener('click', closePopupEdit);
 formPopupEdit.addEventListener('submit', getFormValue);
