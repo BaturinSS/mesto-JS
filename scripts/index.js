@@ -1,6 +1,6 @@
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');
 const profileOpenPopupButtonAdd = document.querySelector('.profile__button-add');
-const popupEditProfileClose = document.querySelector('.popup__close');
+const popupEditProfileClose = document.querySelector('.popup-close');
 const popupEditProfile = document.querySelector('.popup');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -50,7 +50,7 @@ function creatureElementCard(el) {
   })
   elementsCards.prepend(elementCard);
 }
-function openPopupEdit(event) {
+function openPopup(event) {
   if (event.target === profileOpenPopupButtonEdit) {
     popupEditProfile.classList.add('popup-opened');
     popupTitle.textContent = 'Редактировать профиль';
@@ -67,7 +67,7 @@ function openPopupEdit(event) {
     popupEditAboutMe.placeholder = 'Ссылка на картинку';
   }
 }
-function closePopupEdit() {
+function closePopup() {
   popupEditProfile.classList.remove('popup-opened');
 }
 function getFormValue(event) {
@@ -79,9 +79,9 @@ function getFormValue(event) {
     const formData = [{name: popupEditName.value, link: popupEditAboutMe.value}]
     formData.forEach((el) => creatureElementCard(el));
   }
-  closePopupEdit();
+  closePopup();
 }
-profileOpenPopupButtonEdit.addEventListener('click', openPopupEdit);
-profileOpenPopupButtonAdd.addEventListener('click', openPopupEdit);
-popupEditProfileClose.addEventListener('click', closePopupEdit);
+profileOpenPopupButtonEdit.addEventListener('click', openPopup);
+profileOpenPopupButtonAdd.addEventListener('click', openPopup);
+popupEditProfileClose.addEventListener('click', closePopup);
 formPopupEdit.addEventListener('submit', getFormValue);

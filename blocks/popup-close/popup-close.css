@@ -1,4 +1,4 @@
-.popup__close {
+.popup-close {
   position: absolute;
   display: flex;
   width: 32px;
@@ -13,13 +13,13 @@
   /*border: 1px solid red;*/
 }
 
-.popup__close:hover {
+.popup-close:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (max-width: 550px) {
-  .popup__close {
+  .popup-close {
     width: 20px;
     height: 20px;
     top: -36px;
