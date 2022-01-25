@@ -1,4 +1,5 @@
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');
+const profileOpenPopupButtonAdd = document.querySelector('.profile__button-add');
 const popupEditProfileClose = document.querySelector('.popup__close');
 const popupEditProfile = document.querySelector('.popup');
 const profileName = document.querySelector('.profile__name');
@@ -6,8 +7,10 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupEditName = document.getElementsByName('name')[0];
 const popupEditAboutMe = document.getElementsByName('aboutMe')[0];
 const formPopupEdit = document.querySelector('.popup__form');
+const formPopupSubmit = document.querySelector('.popup__save-button');
 const elementsTemplate = document.querySelector('#elements-template').content;
 const elementsCards = document.querySelector('.elements__cards');
+const popupTitle = document.querySelector('.popup__title');
 const initialCards = [
   {
     name: 'Архыз',
@@ -39,7 +42,7 @@ function creatureElementCard(el) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
   elementCard.querySelector('.elements__mask-group').src = el.link;
   elementCard.querySelector('.elements__title').textContent = el.name;
-  elementsCards.append(elementCard);
+  elementsCards.prepend(elementCard);
 }
 const elementsGroupButtonDelete = document.querySelectorAll('.elements__delete');
 elementsGroupButtonDelete.forEach(function(basket) {
@@ -54,10 +57,20 @@ elementsGroupButtonHeart.forEach(function(card) {
   })
 })
 function openPopupEdit(event) {
-  if (event.which === 1) {
+  if (event.target === profileOpenPopupButtonEdit) {
     popupEditProfile.classList.add('popup_opened');
+    popupTitle.textContent = 'Редактировать профиль';
+    formPopupSubmit.textContent = 'Сохранить';
     popupEditName.value = profileName.textContent;
     popupEditAboutMe.value = profileSubtitle.textContent;
+  } else {
+    popupEditProfile.classList.add('popup_opened');
+    popupTitle.textContent = 'Новое место';
+    formPopupSubmit.textContent = 'Создать';
+    popupEditName.value = '';
+    popupEditAboutMe.value = '';
+    popupEditName.placeholder = 'Название';
+    popupEditAboutMe.placeholder = 'Ссылка на картинку';
   }
 }
 function closePopupEdit() {
@@ -65,10 +78,16 @@ function closePopupEdit() {
 }
 function getFormValue(event) {
   event.preventDefault();
-  profileName.textContent = popupEditName.value;
-  profileSubtitle.textContent = popupEditAboutMe.value;
+  if (formPopupSubmit.textContent === 'Сохранить') {
+    profileName.textContent = popupEditName.value;
+    profileSubtitle.textContent = popupEditAboutMe.value;
+  } else {
+    const formData = [{name: popupEditName.value, link: popupEditAboutMe.value}]
+    formData.forEach((el) => creatureElementCard(el));
+  }
   closePopupEdit();
 }
 profileOpenPopupButtonEdit.addEventListener('click', openPopupEdit);
+profileOpenPopupButtonAdd.addEventListener('click', openPopupEdit);
 popupEditProfileClose.addEventListener('click', closePopupEdit);
 formPopupEdit.addEventListener('submit', getFormValue);
