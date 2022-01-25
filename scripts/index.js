@@ -1,7 +1,9 @@
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');
 const profileOpenPopupButtonAdd = document.querySelector('.profile__button-add');
-const popupEditProfileClose = document.querySelector('.popup-close');
+const popupEditProfileClose = document.querySelectorAll('.popup-close')[0];
+const popupImageZoomClose = document.querySelectorAll('.popup-close')[1];
 const popupEditProfile = document.querySelector('.popup');
+const popupImageZoom = document.querySelector('.popup-zoom');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupEditName = document.getElementsByName('name')[0];
@@ -48,6 +50,9 @@ function creatureElementCard(el) {
   elementCard.querySelector('.elements__group').addEventListener('click', function(event) {
     event.target.classList.toggle('elements__group_active');
   })
+  elementCard.querySelector('.elements__mask-group').addEventListener('click', function(event) {
+    openPopup(event);
+  })
   elementsCards.prepend(elementCard);
 }
 function openPopup(event) {
@@ -57,7 +62,7 @@ function openPopup(event) {
     formPopupSubmit.textContent = 'Сохранить';
     popupEditName.value = profileName.textContent;
     popupEditAboutMe.value = profileSubtitle.textContent;
-  } else {
+  } else if (event.target === profileOpenPopupButtonAdd) {
     popupEditProfile.classList.add('popup-opened');
     popupTitle.textContent = 'Новое место';
     formPopupSubmit.textContent = 'Создать';
@@ -65,10 +70,13 @@ function openPopup(event) {
     popupEditAboutMe.value = '';
     popupEditName.placeholder = 'Название';
     popupEditAboutMe.placeholder = 'Ссылка на картинку';
+  } else {
+    popupImageZoom.classList.add('popup-opened');
   }
 }
 function closePopup() {
   popupEditProfile.classList.remove('popup-opened');
+  popupImageZoom.classList.remove('popup-opened');
 }
 function getFormValue(event) {
   event.preventDefault();
@@ -84,4 +92,5 @@ function getFormValue(event) {
 profileOpenPopupButtonEdit.addEventListener('click', openPopup);
 profileOpenPopupButtonAdd.addEventListener('click', openPopup);
 popupEditProfileClose.addEventListener('click', closePopup);
+popupImageZoomClose.addEventListener('click', closePopup);
 formPopupEdit.addEventListener('submit', getFormValue);
