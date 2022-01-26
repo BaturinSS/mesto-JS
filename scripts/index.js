@@ -69,8 +69,8 @@ function openPopup(event) {
   } else {
     popupZoom.classList.add('popup-opened');
     popupZoomImage.src = event.target.src;
-    const rectangle = event.target.closest('.elements__rectangle');
-    popupZoomSubtitle.textContent = rectangle.querySelector('.elements__title').textContent;
+    const elementRectangle = event.target.closest('.elements__rectangle');
+    popupZoomSubtitle.textContent = elementRectangle.querySelector('.elements__title').textContent;
   }
 }
 function closePopup() {
