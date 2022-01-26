@@ -18,11 +18,13 @@ const popupZoomImage = document.querySelector('.popup-zoom__image');
 initialCards.forEach((el) => creatureElementCard(el));
 function creatureElementCard(el) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
-  elementCard.querySelector('.elements__mask-group').src = el.link;
   elementCard.querySelector('.elements__title').textContent = el.name;
   elementCard.querySelector('.elements__delete').addEventListener('click', (event) => event.currentTarget.closest('.elements__element').remove())
   elementCard.querySelector('.elements__group').addEventListener('click', (event) => event.target.classList.toggle('elements__group_active'))
-  elementCard.querySelector('.elements__mask-group').addEventListener('click', (event) => openPopup(event))
+  const elementImage = elementCard.querySelector('.elements__mask-group');
+  elementImage.src = el.link;
+  elementImage.alt = el.name;
+  elementImage.addEventListener('click', (event) => openPopup(event))
   elementsCards.prepend(elementCard);
 }
 function openPopup(event) {
