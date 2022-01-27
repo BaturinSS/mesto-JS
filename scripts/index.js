@@ -30,33 +30,31 @@ function createCard(cardInfo) {
   const elementImage = elementCard.querySelector('.elements__mask-group');
   elementImage.src = cardInfo.link;
   elementImage.alt = cardInfo.name;
-  elementImage.addEventListener('click', event => openPopup(event))
+  elementImage.addEventListener('click', event => openImagePopup(event))
   return elementCard;
 }
-
-
-function openPopup(event) {
-  if (event.target === profileOpenPopupButtonEdit) {
-    popupEditProfile.classList.add('popup_opened');
-    inputUserName.value = profileName.textContent;
-    inputUserProfession.value = profileSubtitle.textContent;
-  } else if (event.target === profileOpenPopupButtonAdd) {
-    popupAddCard.classList.add('popup_opened');
-  } else {
-    popupZoom.classList.add('popup_opened');
-    popupZoomImage.src = event.target.src;
-    popupZoomImage.alt = event.target.alt;
-    const elementRectangle = event.target.closest('.elements__rectangle');
-    popupZoomSubtitle.textContent = elementRectangle.querySelector('.elements__title').textContent;
-  }
+function openAddProfilePopup() {
+  openPopup(popupAddCard);
+}
+function openEditProfilePopup() {
+  openPopup(popupEditProfile);
+  inputUserName.value = profileName.textContent;
+  inputUserProfession.value = profileSubtitle.textContent;
+}
+function openImagePopup(event) {
+  openPopup(popupZoom);
+  popupZoomImage.src = event.target.src;
+  popupZoomImage.alt = event.target.alt;
+  const elementRectangle = event.target.closest('.elements__rectangle');
+  popupZoomSubtitle.textContent = elementRectangle.querySelector('.elements__title').textContent;
+}
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 function closePopup(event) {
   const popupActive = event.target.closest('.popup');
   popupActive.classList.remove('popup_opened');
 }
-
-
-
 function submitEditProfileForm(event) {
   event.preventDefault();
   profileName.textContent = inputUserName.value;
@@ -71,10 +69,10 @@ function submitAddCardForm(event) {
   inputCardLink.value = '';
   closePopup(event);
 }
-profileOpenPopupButtonEdit.addEventListener('click', openPopup);
+profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 popupEditProfileClose.addEventListener('click', closePopup);
 popupFormAdd.addEventListener('submit', submitAddCardForm);
-profileOpenPopupButtonAdd.addEventListener('click', openPopup);
+profileOpenPopupButtonAdd.addEventListener('click', openAddProfilePopup);
 popupAddCardClose.addEventListener('click', closePopup);
 popupFormEdit.addEventListener('submit', submitEditProfileForm);
 popupZoomClose.addEventListener('click', closePopup);
