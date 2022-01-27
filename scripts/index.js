@@ -56,6 +56,8 @@ function getFormValue(event) {
   } else if (event.currentTarget === popupFormAdd) {
     const formData = [{name: popupAddTitlePicture.value, link: popupAddLinkPicture.value}]
     formData.forEach(el => createCard(el));
+    popupAddTitlePicture.value = '';
+    popupAddLinkPicture.value = '';
   }
   closePopup(event);
 }
