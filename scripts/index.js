@@ -33,6 +33,8 @@ function createCard(cardInfo) {
   elementImage.addEventListener('click', event => openPopup(event))
   return elementCard;
 }
+
+
 function openPopup(event) {
   if (event.target === profileOpenPopupButtonEdit) {
     popupEditProfile.classList.add('popup_opened');
@@ -52,23 +54,27 @@ function closePopup(event) {
   const popupActive = event.target.closest('.popup');
   popupActive.classList.remove('popup_opened');
 }
-function getFormValue(event) {
+
+
+
+function submitEditProfileForm(event) {
   event.preventDefault();
-  if (event.currentTarget === popupFormEdit) {
-    profileName.textContent = inputUserName.value;
-    profileSubtitle.textContent = inputUserProfession.value;
-  } else if (event.currentTarget === popupFormAdd) {
-    const formData = [{name: inputCardTitle.value, link: inputCardLink.value}]
-    formData.forEach(cardInfo => addCard(cardInfo));
-    inputCardTitle.value = '';
-    inputCardLink.value = '';
-  }
+  profileName.textContent = inputUserName.value;
+  profileSubtitle.textContent = inputUserProfession.value;
+  closePopup(event);
+}
+function submitAddCardForm(event) {
+  event.preventDefault();
+  const formData = [{name: inputCardTitle.value, link: inputCardLink.value}];
+  formData.forEach(cardInfo => addCard(cardInfo));
+  inputCardTitle.value = '';
+  inputCardLink.value = '';
   closePopup(event);
 }
 profileOpenPopupButtonEdit.addEventListener('click', openPopup);
 popupEditProfileClose.addEventListener('click', closePopup);
-popupFormAdd.addEventListener('submit', getFormValue);
+popupFormAdd.addEventListener('submit', submitAddCardForm);
 profileOpenPopupButtonAdd.addEventListener('click', openPopup);
 popupAddCardClose.addEventListener('click', closePopup);
-popupFormEdit.addEventListener('submit', getFormValue);
+popupFormEdit.addEventListener('submit', submitEditProfileForm);
 popupZoomClose.addEventListener('click', closePopup);
