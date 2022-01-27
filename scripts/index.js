@@ -18,20 +18,21 @@ const popupZoomSubtitle = popupZoom.querySelector('.popup__subtitle');
 const popupZoomImage = popupZoom.querySelector('.popup__image');
 const elementsTemplate = document.querySelector('#elements-template').content;
 const elementsCards = document.querySelector('.elements__cards');
-initialCards.forEach(el => createCard(el));
-function createCard(el) {
-  console.log(el);
+initialCards.forEach(cardInfo => addCard(cardInfo));
+function addCard(cardInfo) {
+  elementsCards.prepend(createCard(cardInfo));
+};
+function createCard(cardInfo) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
-  elementCard.querySelector('.elements__title').textContent = el.name;
+  elementCard.querySelector('.elements__title').textContent = cardInfo.name;
   elementCard.querySelector('.elements__delete').addEventListener('click', event => event.currentTarget.closest('.elements__element').remove());
   elementCard.querySelector('.elements__group').addEventListener('click', event => event.target.classList.toggle('elements__group_active'));
   const elementImage = elementCard.querySelector('.elements__mask-group');
-  elementImage.src = el.link;
-  elementImage.alt = el.name;
+  elementImage.src = cardInfo.link;
+  elementImage.alt = cardInfo.name;
   elementImage.addEventListener('click', event => openPopup(event))
-  addCard(elementCard);
+  return elementCard;
 }
-function addCard(card) {elementsCards.prepend(card)};
 function openPopup(event) {
   if (event.target === profileOpenPopupButtonEdit) {
     popupEditProfile.classList.add('popup_opened');
@@ -58,7 +59,7 @@ function getFormValue(event) {
     profileSubtitle.textContent = inputUserProfession.value;
   } else if (event.currentTarget === popupFormAdd) {
     const formData = [{name: inputCardTitle.value, link: inputCardLink.value}]
-    formData.forEach(el => createCard(el));
+    formData.forEach(cardInfo => addCard(cardInfo));
     inputCardTitle.value = '';
     inputCardLink.value = '';
   }
