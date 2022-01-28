@@ -19,9 +19,7 @@ const popupZoomImage = popupZoom.querySelector('.popup__image');
 const elementsTemplate = document.querySelector('#elements-template').content;
 const elementsCards = document.querySelector('.elements__cards');
 initialCards.forEach(cardInfo => addCard(cardInfo));
-function addCard(cardInfo) {
-  elementsCards.prepend(createCard(cardInfo));
-};
+function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))};
 function createCard(cardInfo) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
   elementCard.querySelector('.elements__title').textContent = cardInfo.name;
@@ -32,9 +30,6 @@ function createCard(cardInfo) {
   elementImage.alt = cardInfo.name;
   elementImage.addEventListener('click', event => openImagePopup(event))
   return elementCard;
-}
-function openAddProfilePopup() {
-  openPopup(popupAddCard);
 }
 function openEditProfilePopup() {
   openPopup(popupEditProfile);
@@ -48,9 +43,7 @@ function openImagePopup(event) {
   const elementRectangle = event.target.closest('.elements__rectangle');
   popupZoomSubtitle.textContent = elementRectangle.querySelector('.elements__title').textContent;
 }
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
+function openPopup(popup) {popup.classList.add('popup_opened')}
 function closePopup(event) {
   const popupActive = event.target.closest('.popup');
   popupActive.classList.remove('popup_opened');
@@ -72,7 +65,7 @@ function submitAddCardForm(event) {
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 popupEditProfileClose.addEventListener('click', closePopup);
 popupFormAdd.addEventListener('submit', submitAddCardForm);
-profileOpenPopupButtonAdd.addEventListener('click', openAddProfilePopup);
+profileOpenPopupButtonAdd.addEventListener('click', () => openPopup(popupAddCard));
 popupAddCardClose.addEventListener('click', closePopup);
 popupFormEdit.addEventListener('submit', submitEditProfileForm);
 popupZoomClose.addEventListener('click', closePopup);
