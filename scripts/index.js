@@ -1,5 +1,4 @@
 const popupEditProfile = document.querySelector('.popup_edit-profile');
-const popupEditProfileClose = popupEditProfile.querySelector('.popup__close');
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');
 const popupFormEdit = popupEditProfile.querySelector('.popup__form');
 const inputUserName = document.querySelector('.popup__input_user-name');
@@ -7,17 +6,16 @@ const inputUserProfession = document.querySelector('.popup__input_user-professio
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupAddCard = document.querySelector('.popup_add-card');
-const popupAddCardClose = popupAddCard.querySelector('.popup__close');
 const profileOpenPopupButtonAdd = document.querySelector('.profile__button-add');
 const popupFormAdd = popupAddCard.querySelector('.popup__form');
 const inputCardTitle = document.querySelector('.popup__input_card-title');
 const inputCardLink = document.querySelector('.popup__input_card-link');
 const popupZoom = document.querySelector('.popup_image-zoom');
-const popupZoomClose = popupZoom.querySelector('.popup__close');
 const popupZoomSubtitle = popupZoom.querySelector('.popup__subtitle');
 const popupZoomImage = popupZoom.querySelector('.popup__image');
 const elementsTemplate = document.querySelector('#elements-template').content;
 const elementsCards = document.querySelector('.elements__cards');
+const popup = document.querySelectorAll('.popup');
 initialCards.forEach(cardInfo => addCard(cardInfo));
 function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))};
 function createCard(cardInfo) {
@@ -46,7 +44,10 @@ function openImagePopup(event) {
 function openPopup(popup) {popup.classList.add('popup_opened')}
 function closePopup(event) {
   const popupActive = event.target.closest('.popup');
-  popupActive.classList.remove('popup_opened');
+  const buttonCloseActivePopup = popupActive.querySelector('.popup__image-cross');
+  if (event.target === event.currentTarget || event.target === buttonCloseActivePopup) {
+    popupActive.classList.remove('popup_opened');
+  }
 }
 function submitEditProfileForm(event) {
   event.preventDefault();
@@ -63,9 +64,7 @@ function submitAddCardForm(event) {
   closePopup(event);
 }
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
-popupEditProfileClose.addEventListener('click', closePopup);
 popupFormAdd.addEventListener('submit', submitAddCardForm);
 profileOpenPopupButtonAdd.addEventListener('click', () => openPopup(popupAddCard));
-popupAddCardClose.addEventListener('click', closePopup);
 popupFormEdit.addEventListener('submit', submitEditProfileForm);
-popupZoomClose.addEventListener('click', closePopup);
+popup.forEach( popupItem => popupItem.addEventListener('click', closePopup));
