@@ -15,7 +15,6 @@ const popupZoomSubtitle = popupZoom.querySelector('.popup__subtitle');
 const popupZoomImage = popupZoom.querySelector('.popup__image');
 const elementsTemplate = document.querySelector('#elements-template').content;
 const elementsCards = document.querySelector('.elements__cards');
-const popup = document.querySelectorAll('.popup');
 initialCards.forEach(cardInfo => addCard(cardInfo));
 function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))};
 function createCard(cardInfo) {
@@ -41,13 +40,25 @@ function openImagePopup(event) {
   const elementRectangle = event.target.closest('.elements__rectangle');
   popupZoomSubtitle.textContent = elementRectangle.querySelector('.elements__title').textContent;
 }
-function openPopup(popup) {popup.classList.add('popup_opened')}
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  addEventClosePopup(popup);
+}
 function closePopup(event) {
   const popupActive = event.target.closest('.popup');
   const buttonCloseActivePopup = popupActive.querySelector('.popup__image-cross');
-  if (event.target === event.currentTarget || event.target === buttonCloseActivePopup) {
+  if (event.target === event.currentTarget || event.target === buttonCloseActivePopup || event.key === 'Escape') {
     popupActive.classList.remove('popup_opened');
+    removeEventClosePopup(popupActive);
   }
+}
+function addEventClosePopup(popup) {
+  popup.addEventListener('click',  event => closePopup(event));
+  popup.addEventListener('keydown', event => closePopup(event));
+}
+function removeEventClosePopup(popup) {
+  popup.removeEventListener('click',  event => closePopup(event));
+  popup.removeEventListener('keydown', event => closePopup(event));
 }
 function submitEditProfileForm(event) {
   event.preventDefault();
@@ -67,4 +78,3 @@ profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 popupFormAdd.addEventListener('submit', submitAddCardForm);
 profileOpenPopupButtonAdd.addEventListener('click', () => openPopup(popupAddCard));
 popupFormEdit.addEventListener('submit', submitEditProfileForm);
-popup.forEach( popupItem => popupItem.addEventListener('click', closePopup));
