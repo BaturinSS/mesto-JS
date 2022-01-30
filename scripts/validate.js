@@ -1,52 +1,37 @@
-const ElementSelectorClasses = {
-  form: '.popup__form',
-  Input: '.popup__input',
-  submitButton: '.popup__save-button',
-  inactiveButton: 'popup__save-button_disabled',
-  inputError: 'popup__input_type_error',
-  textError: 'popup__error_visible'
+
+/*const formData = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
 };
 
-const enableValidation = (formInput) => {
-  console.log(formInput);
-  if (!formInput.validity.valid) {
-    showInputError(formInput);
-  } else {
-    hideInputError(formInput);
-  }
-};
 
-// Вынесем все необходимые элементы формы в константы
-//const formElement = document.querySelector('.form');
-//const formInput = formElement.querySelector('.form__input');
 
-// Функция, которая добавляет класс с ошибкой
-/*const showInputError = (element) => {
-  element.classList.add('form__input_type_error');
-};
+const formsList = document.querySelectorAll('.popup__form');
 
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = (element) => {
-  element.classList.remove('form__input_type_error');
-};
-
-// Функция, которая проверяет валидность поля
-const isValid = () => {
-  if (!formInput.validity.valid) {
-    // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formInput);
-  } else {
-    // Если проходит, скроем
-    hideInputError(formInput);
-  }
-};
-
-formElement.addEventListener('submit', function (evt) {
-  // Отменим стандартное поведение по сабмиту
-  evt.preventDefault();
+formsList.forEach(form => {
+  const imputFormList = form.querySelectorAll('.popup__input');
+  imputFormList.forEach(formInput => {
+    formInput.addEventListener('input', () => isValid(formInput));
+  })
 });
 
-// Вызовем функцию isValid на каждый ввод символа
-formInput.addEventListener('input', isValid);*/
+const showInputError = formInput => {
+  formInput.classList.remove('popup__input_type_error');
+};
 
-ElementSelectorClasses[formsInputs].forEach(formInput => {enableValidation(formInput)});
+const hideInputError = formInput => {
+  formInput.classList.add('popup__input_type_error');
+};
+
+const isValid = (formInput) => {
+  console.log(formInput.validity.valid)
+  if (formInput.validity.valid) {
+    showInputError(formInput);
+  } else {
+    hideInputError(formInput);
+  }
+};*/
