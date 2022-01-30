@@ -42,7 +42,8 @@ function openImagePopup(event) {
 }
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  addEventClosePopup(popup);
+  addEventPopup(popup);
+  enableValidation(formData);
 }
 function closePopup(event) {
   const popupActive = event.target.closest('.popup');
@@ -52,12 +53,20 @@ function closePopup(event) {
       resetInputForm(popupAddCard);
     }
     popupActive.classList.remove('popup_opened');
-    removeEventClosePopup(popupActive);
+    removeListeners(popupActive);
   }
 }
-function addEventClosePopup(popup) {
+const removeListeners = (popup) => {
+  popup.removeEventListener('mousedown',  event => closePopup(event));
+  popup.removeEventListener('keydown', event => closePopup(event));
+  popupFormEdit.removeEventListener('submit', submitEditProfileForm);
+  popupFormAdd.removeEventListener('submit', submitAddCardForm);
+}
+function addEventPopup(popup) {
   popup.addEventListener('mousedown',  event => closePopup(event));
   popup.addEventListener('keydown', event => closePopup(event));
+  popupFormEdit.addEventListener('submit', submitEditProfileForm);
+  popupFormAdd.addEventListener('submit', submitAddCardForm);
 }
 function removeEventClosePopup(popup) {
   popup.removeEventListener('mousedown',  event => closePopup(event));
@@ -81,6 +90,4 @@ function submitAddCardForm(event) {
   closePopup(event);
 }
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
-popupFormAdd.addEventListener('submit', submitAddCardForm);
 profileOpenPopupButtonAdd.addEventListener('click', () => openPopup(popupAddCard));
-popupFormEdit.addEventListener('submit', submitEditProfileForm);

@@ -1,4 +1,5 @@
 .elements__rectangle {
+  min-height: 362px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
