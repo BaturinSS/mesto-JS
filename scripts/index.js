@@ -48,6 +48,9 @@ function closePopup(event) {
   const popupActive = event.target.closest('.popup');
   const buttonCloseActivePopup = popupActive.querySelector('.popup__image-cross');
   if (event.target === event.currentTarget || event.target === buttonCloseActivePopup || event.key === 'Escape') {
+    if (event.currentTarget === popupAddCard) {
+      resetInputForm(popupAddCard);
+    }
     popupActive.classList.remove('popup_opened');
     removeEventClosePopup(popupActive);
   }
@@ -66,12 +69,15 @@ function submitEditProfileForm(event) {
   profileSubtitle.textContent = inputUserProfession.value;
   closePopup(event);
 }
+function resetInputForm(form) {
+  const inputs = form.querySelectorAll('input[class]');
+  inputs.forEach(input => input.value = '');
+}
 function submitAddCardForm(event) {
   event.preventDefault();
-  const formData = [{name: inputCardTitle.value, link: inputCardLink.value}];
-  formData.forEach(cardInfo => addCard(cardInfo));
-  inputCardTitle.value = '';
-  inputCardLink.value = '';
+  const cardInfo = {name: inputCardTitle.value, link: inputCardLink.value};
+  addCard(cardInfo);
+  resetInputForm(event.target)
   closePopup(event);
 }
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
