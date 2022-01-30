@@ -53,11 +53,11 @@ function closePopup(event) {
   }
 }
 function addEventClosePopup(popup) {
-  popup.addEventListener('click',  event => closePopup(event));
+  popup.addEventListener('mousedown',  event => closePopup(event));
   popup.addEventListener('keydown', event => closePopup(event));
 }
 function removeEventClosePopup(popup) {
-  popup.removeEventListener('click',  event => closePopup(event));
+  popup.removeEventListener('mousedown',  event => closePopup(event));
   popup.removeEventListener('keydown', event => closePopup(event));
 }
 function submitEditProfileForm(event) {

@@ -37,9 +37,9 @@
       <div class="popup__container">
         <button class="popup__close" type="button"><img class="popup__image-cross" src="./images/image-cross.svg" alt="иконка"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" name="editProfile" action="#" method="get">
-          <input class="popup__input popup__input_user-name" required placeholder="Имя" spellcheck="true" type="text" name="userName">
-          <input class="popup__input popup__input_user-profession" placeholder="О себе" spellcheck="true" type="text" name="userProfession">
+        <form class="popup__form" name="editProfile" action="#" method="get" novalidate>
+          <input class="popup__input popup__input_user-name" required placeholder="Имя" spellcheck="true" type="text" name="userName" minlength="2" maxlength="40">
+          <input class="popup__input popup__input_user-profession" placeholder="О себе" spellcheck="true" type="text" name="userProfession" minlength="2" maxlength="200">
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -48,9 +48,9 @@
       <div class="popup__container">
         <button class="popup__close" type="button"><img class="popup__image-cross" src="./images/image-cross.svg" alt="иконка"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" name="addCard" action="#" method="get">
-          <input class="popup__input popup__input_card-title" required placeholder="Название" spellcheck="true" type="text" name="cardTitle">
-          <input class="popup__input popup__input_card-link" required placeholder="Ссылка на картинку" spellcheck="true" type="text" name="cardLink">
+        <form class="popup__form" name="addCard" action="#" method="get" novalidate>
+          <input class="popup__input popup__input_card-title" required placeholder="Название" spellcheck="true" type="text" name="cardTitle" minlength="2" maxlength="30">
+          <input class="popup__input popup__input_card-link" required placeholder="Ссылка на картинку" spellcheck="true" type="url" name="cardLink">
           <button class="popup__save-button" type="submit">Создать</button>
         </form>
       </div>
