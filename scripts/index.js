@@ -33,6 +33,7 @@ const elementsTemplate = document.querySelector('#elements-template').content;
 const elementsCards = document.querySelector('.elements__cards');
 
 function openPopup (popup) {
+  console.log('open', popup)
   popup.classList.add('popup_opened');
   closePopupEventEscapeKey(popup);
   closePopupEventOverlayClick(popup);
@@ -106,7 +107,8 @@ function closePopupEventOverlayClick (popup) {popup.addEventListener('mousedown'
 function closePopupEventEscapeKey (popup) {popup.addEventListener('keydown', event => {if (event.key === 'Escape') {closePopup(event.currentTarget)}})};
 
 function removeEventPopup (popup) {
-  popup.removeEventListene('mousedown', event => {if (event.target === event.currentTarget) {closePopup(event.target)}});
+  console.log('close', popup)
+  popup.removeEventListener('mousedown', event => {if (event.target === event.currentTarget) {closePopup(event.target)}});
   popup.removeEventListener('keydown', event => {if (event.key === 'Escape') {closePopup(event.currentTarget)}});
   popup.removeEventListener('mousedown', event => {
     const popupActive = event.currentTarget;
