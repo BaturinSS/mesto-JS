@@ -32,50 +32,49 @@ const elementsTemplate = document.querySelector('#elements-template').content;
 
 const elementsCards = document.querySelector('.elements__cards');
 
-function openPopup (popup) {
-  console.log('open', popup)
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   closePopupEventEscapeKey(popup);
   closePopupEventOverlayClick(popup);
   closePopupEventCrossClick(popup);
 }
 
-function openImagePopup (elementImage) {
+function openImagePopup(elementImage) {
   popupZoomImage.src = elementImage.src;
   popupZoomImage.alt = elementImage.alt;
   popupZoomSubtitle.textContent = elementImage.alt;
   openPopup(popupZoom);
 }
 
-function openEditProfilePopup () {
+function openEditProfilePopup() {
   inputUserName.value = profileName.textContent;
   inputUserProfession.value = profileSubtitle.textContent;
   openPopup(popupEditProfile);
   checkingFormFilling(popupEditProfile);
 }
 
-function openAddImagePopup () {
+function openAddImagePopup() {
   popupFormAdd.reset();
   openPopup(popupAddCard);
   checkingFormFilling(popupAddCard);
 }
 
-function submitAddCardForm (event) {
+function submitAddCardForm(event) {
   event.preventDefault();
   addCard({name: inputCardTitle.value, link: inputCardLink.value});
   closePopup(popupAddCard);
 }
 
-function submitEditProfileForm (event) {
+function submitEditProfileForm(event) {
   event.preventDefault();
   profileName.textContent = inputUserName.value;
   profileSubtitle.textContent = inputUserProfession.value;
   closePopup(popupEditProfile);
 }
 
-function addCard (cardInfo) {elementsCards.prepend(createCard(cardInfo))};
+function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))};
 
-function createCard (cardInfo) {
+function createCard(cardInfo) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
   elementCard.querySelector('.elements__title').textContent = cardInfo.name;
   elementCard.querySelector('.elements__delete').addEventListener('click', event => event.currentTarget.closest('.elements__element').remove());
@@ -87,36 +86,33 @@ function createCard (cardInfo) {
   return elementCard;
 }
 
-function closePopup (popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
   removeEventPopup(popup);
 }
 
-function closePopupEventCrossClick (popup) {
-  popup.addEventListener('mousedown', event => {
-    const popupActive = event.currentTarget;
-    const closeCrossButton = popupActive.querySelector('.popup__image-cross');
-    if (event.target === closeCrossButton) {
-      closePopup(popupActive);
-    }
-  })
+function closePopupEventCrossClick(popup) {popup.addEventListener('mousedown', checkingCrossClick)};
+
+function checkingCrossClick(event) {
+  const popupActive = event.currentTarget;
+  const closeCrossButton = popupActive.querySelector('.popup__image-cross');
+  if (event.target === closeCrossButton) {
+    closePopup(popupActive);
+  }
 }
 
-function closePopupEventOverlayClick (popup) {popup.addEventListener('mousedown', event => {if (event.target === event.currentTarget) {closePopup(event.target)}})};
+function closePopupEventOverlayClick(popup) {popup.addEventListener('mousedown', checkingOverlayClick)};
 
-function closePopupEventEscapeKey (popup) {popup.addEventListener('keydown', event => {if (event.key === 'Escape') {closePopup(event.currentTarget)}})};
+function checkingOverlayClick(event) {if (event.target === event.currentTarget) {closePopup(event.target)}};
 
-function removeEventPopup (popup) {
-  console.log('close', popup)
-  popup.removeEventListener('mousedown', event => {if (event.target === event.currentTarget) {closePopup(event.target)}});
-  popup.removeEventListener('keydown', event => {if (event.key === 'Escape') {closePopup(event.currentTarget)}});
-  popup.removeEventListener('mousedown', event => {
-    const popupActive = event.currentTarget;
-    const closeCrossButton = popupActive.querySelector('.popup__image-cross');
-    if (event.target === closeCrossButton) {
-      closePopup(popupActive);
-    }
-  })
+function closePopupEventEscapeKey(popup) {popup.addEventListener('keydown', checkingKeystroke)};
+
+function checkingKeystroke(event) {{if (event.key === 'Escape') {closePopup(event.currentTarget)}}};
+
+function removeEventPopup(popup) {
+  popup.removeEventListener('mousedown', checkingOverlayClick);
+  popup.removeEventListener('keydown', checkingKeystroke);
+  popup.removeEventListener('mousedown', checkingCrossClick);
 }
 
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
