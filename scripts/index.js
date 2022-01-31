@@ -43,7 +43,6 @@ function openImagePopup(event) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   addEventPopup(popup);
-  enableValidation(formData);
 }
 function closePopup(event) {
   const popupActive = event.target.closest('.popup');
