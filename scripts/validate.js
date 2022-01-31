@@ -22,7 +22,7 @@ const deactivateButton = (formData, inputElement) => {
 const activationButton = (formData, inputElement) => {
   const formActive = inputElement.closest(formData['formSelector']);
   const submitButton = formActive.querySelector(formData['submitButtonSelector']);
-  submitButton.setAttribute('disabled', false);
+  submitButton.removeAttribute('disabled');
   submitButton.classList.remove(formData['inactiveButtonClass']);
 }
 const hasInvalidInput = (formData, inputElement) => {
@@ -38,10 +38,6 @@ const changingButtonState = (formData, inputElement) => {
     deactivateButton(formData, inputElement);
   }
 }
-/*const checkingFormFilling = (formData, popupActive) => {
-  const inputsPopupActive = Array.from(popupActive.querySelectorAll(formData['inputSelector']));
-  inputsPopupActive.forEach(inputElement => {if (inputElement.value.length === 0) {deactivateButton(formData, inputElement)}});
-}*/
 const isValid = (formData, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formData, inputElement);
@@ -56,7 +52,9 @@ const enableValidation = (formData) => {
   const arrayForms = Array.from(document.querySelectorAll(formData['formSelector']));
   arrayForms.forEach(form => {
     const arrayImputsForm = Array.from(form.querySelectorAll(formData['inputSelector']));
-    arrayImputsForm.forEach(inputElement => {inputElement.addEventListener('input', () => isValid(formData, inputElement))})});
+    arrayImputsForm.forEach(inputElement => {inputElement.addEventListener('input', () => isValid(formData, inputElement));
+  })
+})
 }
 enableValidation({
   formSelector: '.popup__form',

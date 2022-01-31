@@ -32,6 +32,7 @@ function openEditProfilePopup() {
   openPopup(popupEditProfile);
   inputUserName.value = profileName.textContent;
   inputUserProfession.value = profileSubtitle.textContent;
+  checkingFormFilling(popupEditProfile);
 }
 function openImagePopup(event) {
   openPopup(popupZoom);
@@ -39,6 +40,13 @@ function openImagePopup(event) {
   popupZoomImage.alt = event.target.alt;
   const elementRectangle = event.target.closest('.elements__rectangle');
   popupZoomSubtitle.textContent = elementRectangle.querySelector('.elements__title').textContent;
+}
+const checkingFormFilling = (popup) => {
+  const inputList = popup.querySelectorAll('input');
+  const formData = {submitButtonSelector: '.popup__save-button', formSelector: '.popup__form', inactiveButtonClass: 'popup__save-button_disabled'};
+  inputList.forEach((inputElement) => {
+    if (inputElement.value.length === 0) {deactivateButton(formData, inputElement)};
+  })
 }
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -62,13 +70,13 @@ const removeListeners = (popup) => {
   popupFormAdd.removeEventListener('submit', submitAddCardForm);
 }
 function addEventPopup(popup) {
-  popup.addEventListener('mousedown',  event => closePopup(event));
+  popup.addEventListener('mousedown', event => closePopup(event));
   popup.addEventListener('keydown', event => closePopup(event));
   popupFormEdit.addEventListener('submit', submitEditProfileForm);
   popupFormAdd.addEventListener('submit', submitAddCardForm);
 }
 function removeEventClosePopup(popup) {
-  popup.removeEventListener('mousedown',  event => closePopup(event));
+  popup.removeEventListener('mousedown', event => closePopup(event));
   popup.removeEventListener('keydown', event => closePopup(event));
 }
 function submitEditProfileForm(event) {
@@ -89,4 +97,7 @@ function submitAddCardForm(event) {
   closePopup(event);
 }
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
-profileOpenPopupButtonAdd.addEventListener('click', () => openPopup(popupAddCard));
+profileOpenPopupButtonAdd.addEventListener('click', () => {
+  openPopup(popupAddCard);
+  checkingFormFilling(popupAddCard);
+})
