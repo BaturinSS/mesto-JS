@@ -1,9 +1,8 @@
-const getErrorMessage = inputElement => {return inputElement.validationMessage};
+function getErrorMessage (inputElement) {return inputElement.validationMessage};
 
-const showInputError = (formData, inputElement) => inputElement.classList.add(formData['inputErrorClass']);
+function showInputError (formData, inputElement) {inputElement.classList.add(formData['inputErrorClass'])};
 
-const includeErrorText = (formData, inputElement) => {
-
+function includeErrorText (formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
   const inputError = formActive.querySelector(`.${inputElement.id}-error`);
   inputError.classList.add(formData['textErrorClass']);
@@ -11,35 +10,43 @@ const includeErrorText = (formData, inputElement) => {
   inputError.textContent = errorMessage;
 }
 
-const hideInputError = (formData, inputElement) => inputElement.classList.remove(formData['inputErrorClass']);
+function hideInputError (formData, inputElement) {inputElement.classList.remove(formData['inputErrorClass'])};
 
-const disableErrorText = (formData, inputElement) => {
+function disableErrorText (formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
   const inputError = formActive.querySelector(`.${inputElement.id}-error`);
   inputError.classList.remove(formData['textErrorClass']);
 }
 
-const deactivateButton = (formData, inputElement) => {
+function deactivateButton (formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
   const submitButton = formActive.querySelector(formData['submitButtonSelector']);
   submitButton.setAttribute('disabled', true);
   submitButton.classList.add(formData['inactiveButtonClass']);
 }
 
-const activationButton = (formData, inputElement) => {
+function checkingFormFilling (popup) {
+  const inputList = popup.querySelectorAll('input');
+  const formData = {submitButtonSelector: '.popup__save-button', formSelector: '.popup__form', inactiveButtonClass: 'popup__save-button_disabled'};
+  inputList.forEach((inputElement) => {
+    if (inputElement.value.length === 0) {deactivateButton(formData, inputElement)};
+  })
+}
+
+function activationButton (formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
   const submitButton = formActive.querySelector(formData['submitButtonSelector']);
   submitButton.removeAttribute('disabled');
   submitButton.classList.remove(formData['inactiveButtonClass']);
 }
 
-const hasInvalidInput = (formData, inputElement) => {
+function hasInvalidInput (formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
   const inputsFormActive = Array.from(formActive.querySelectorAll(formData['inputSelector']));
   return inputsFormActive.some((inputElement) => {return !inputElement.validity.valid});
 }
 
-const changingButtonState = (formData, inputElement) => {
+function changingButtonState (formData, inputElement) {
   const validityFormActive = hasInvalidInput(formData, inputElement);
   if (!validityFormActive) {
     activationButton(formData, inputElement);
@@ -48,7 +55,7 @@ const changingButtonState = (formData, inputElement) => {
   }
 }
 
-const isValid = (formData, inputElement) => {
+function isValid (formData, inputElement) {
   if (!inputElement.validity.valid) {
     showInputError(formData, inputElement);
     includeErrorText(formData, inputElement);
@@ -59,7 +66,7 @@ const isValid = (formData, inputElement) => {
   changingButtonState(formData, inputElement);
 }
 
-const enableValidation = (formData) => {
+function enableValidation (formData) {
   const arrayForms = Array.from(document.querySelectorAll(formData['formSelector']));
   arrayForms.forEach(form => {
     const arrayInputsForm = Array.from(form.querySelectorAll(formData['inputSelector']));
