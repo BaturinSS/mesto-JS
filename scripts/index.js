@@ -32,11 +32,11 @@ const elementsTemplate = document.querySelector('#elements-template').content;
 
 const elementsCards = document.querySelector('.elements__cards');
 
+const buttonsCloseList = document.querySelectorAll('.popup__close');
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   closePopupEventEscapeKey();
-  closePopupEventOverlayClick(popup);
-  closePopupEventCrossClick(popup);
 }
 
 function openImagePopup(elementImage) {
@@ -88,32 +88,26 @@ function createCard(cardInfo) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  removeEventPopup(popup);
+  removeEventEscapeKey();
 }
-
-function closePopupEventCrossClick(popup) {popup.addEventListener('mousedown', checkingCrossClick)};
-
-function checkingCrossClick(event) {
-  const popupActive = event.currentTarget;
-  const closeCrossButton = popupActive.querySelector('.popup__image-cross');
-  if (event.target === closeCrossButton) {
-    closePopup(popupActive);
-  }
-}
-
-function closePopupEventOverlayClick(popup) {popup.addEventListener('mousedown', checkingOverlayClick)};
-
-function checkingOverlayClick(event) {if (event.target === event.currentTarget) {closePopup(event.target)}};
 
 function closePopupEventEscapeKey() {document.addEventListener('keydown', checkingKeystroke)};
 
 function checkingKeystroke(event) {if (event.key === 'Escape') {const popup = document.querySelector('.popup_opened'); closePopup(popup)}};
 
-function removeEventPopup(popup) {
-  popup.removeEventListener('mousedown', checkingOverlayClick);
-  document.removeEventListener('keydown', checkingKeystroke);
-  popup.removeEventListener('mousedown', checkingCrossClick);
-}
+function removeEventEscapeKey() {document.removeEventListener('keydown', checkingKeystroke)};
+
+buttonsCloseList.forEach(buttonClose => buttonClose.addEventListener('mousedown', function() {
+  popupActive = document.querySelector('.popup_opened');
+  closePopup(popupActive);
+}))
+
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('popup_opened')) {
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
+  }
+})
 
 profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 
