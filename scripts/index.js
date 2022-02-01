@@ -34,7 +34,7 @@ const elementsCards = document.querySelector('.elements__cards');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  closePopupEventEscapeKey(popup);
+  closePopupEventEscapeKey();
   closePopupEventOverlayClick(popup);
   closePopupEventCrossClick(popup);
 }
@@ -105,13 +105,13 @@ function closePopupEventOverlayClick(popup) {popup.addEventListener('mousedown',
 
 function checkingOverlayClick(event) {if (event.target === event.currentTarget) {closePopup(event.target)}};
 
-function closePopupEventEscapeKey(popup) {popup.addEventListener('keydown', checkingKeystroke)};
+function closePopupEventEscapeKey() {document.addEventListener('keydown', checkingKeystroke)};
 
-function checkingKeystroke(event) {{if (event.key === 'Escape') {closePopup(event.currentTarget)}}};
+function checkingKeystroke(event) {if (event.key === 'Escape') {const popup = document.querySelector('.popup_opened'); closePopup(popup)}};
 
 function removeEventPopup(popup) {
   popup.removeEventListener('mousedown', checkingOverlayClick);
-  popup.removeEventListener('keydown', checkingKeystroke);
+  document.removeEventListener('keydown', checkingKeystroke);
   popup.removeEventListener('mousedown', checkingCrossClick);
 }
 
