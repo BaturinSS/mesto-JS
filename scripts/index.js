@@ -72,7 +72,7 @@ function submitEditProfileForm(event) {
   closePopup(popupEditProfile);
 }
 
-function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))};
+function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))}
 
 function createCard(cardInfo) {
   const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
@@ -91,14 +91,14 @@ function closePopup(popup) {
   removeEventEscapeKey();
 }
 
-function closePopupEventEscapeKey() {document.addEventListener('keydown', checkingKeystroke)};
+function closePopupEventEscapeKey() {document.addEventListener('keydown', checkingKeystroke)}
 
-function checkingKeystroke(event) {if (event.key === 'Escape') {const popup = document.querySelector('.popup_opened'); closePopup(popup)}};
+function checkingKeystroke(event) {if (event.key === 'Escape') {const popup = document.querySelector('.popup_opened'); closePopup(popup)}}
 
-function removeEventEscapeKey() {document.removeEventListener('keydown', checkingKeystroke)};
+function removeEventEscapeKey() {document.removeEventListener('keydown', checkingKeystroke)}
 
 buttonsCloseList.forEach(buttonClose => buttonClose.addEventListener('mousedown', function() {
-  popupActive = document.querySelector('.popup_opened');
+  const popupActive = document.querySelector('.popup_opened');
   closePopup(popupActive);
 }))
 
