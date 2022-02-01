@@ -1,16 +1,15 @@
-function getErrorMessage(inputElement) {return inputElement.validationMessage};
+function getErrorMessage(inputElement) {return inputElement.validationMessage}
 
-function showInputError(formData, inputElement) {inputElement.classList.add(formData['inputErrorClass'])};
+function showInputError(formData, inputElement) {inputElement.classList.add(formData['inputErrorClass'])}
 
 function includeErrorText(formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
   const inputError = formActive.querySelector(`.${inputElement.id}-error`);
   inputError.classList.add(formData['textErrorClass']);
-  errorMessage = getErrorMessage(inputElement);
-  inputError.textContent = errorMessage;
+  inputError.textContent = getErrorMessage(inputElement);
 }
 
-function hideInputError(formData, inputElement) {inputElement.classList.remove(formData['inputErrorClass'])};
+function hideInputError(formData, inputElement) {inputElement.classList.remove(formData['inputErrorClass'])}
 
 function disableErrorText(formData, inputElement) {
   const formActive = inputElement.closest(formData['formSelector']);
@@ -29,7 +28,7 @@ function checkingFormFilling(popup) {
   const inputList = popup.querySelectorAll('input');
   const formData = {submitButtonSelector: '.popup__save-button', formSelector: '.popup__form', inactiveButtonClass: 'popup__save-button_disabled'};
   inputList.forEach((inputElement) => {
-    if (inputElement.value.length === 0) {deactivateButton(formData, inputElement)};
+    if (inputElement.value.length === 0) {deactivateButton(formData, inputElement)}
   })
 }
 
