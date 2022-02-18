@@ -102,7 +102,7 @@ buttonsCloseList.forEach(buttonClose => buttonClose.addEventListener('mousedown'
   closePopup(popupActive);
 }))
 
-document.addEventListener('click', (event) => {
+document.addEventListener('mousedown', (event) => {
   if (event.target.classList.contains('popup_opened')) {
     const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
