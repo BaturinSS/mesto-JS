@@ -37,6 +37,7 @@ const buttonsCloseList = document.querySelectorAll('.popup__close');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   closePopupEventEscapeKey();
+  checkingFormFilling(popup);
 }
 
 function openImagePopup(elementImage) {
@@ -50,13 +51,11 @@ function openEditProfilePopup() {
   inputUserName.value = profileName.textContent;
   inputUserProfession.value = profileSubtitle.textContent;
   openPopup(popupEditProfile);
-  checkingFormFilling(popupEditProfile);
 }
 
 function openAddImagePopup() {
   popupFormAdd.reset();
   openPopup(popupAddCard);
-  checkingFormFilling(popupAddCard);
 }
 
 function submitAddCardForm(event) {
@@ -87,6 +86,7 @@ function createCard(cardInfo) {
 }
 
 function closePopup(popup) {
+  checkingFormFilling(popup);
   popup.classList.remove('popup_opened');
   removeEventEscapeKey();
 }
