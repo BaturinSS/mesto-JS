@@ -1,5 +1,8 @@
 import {initialCards} from './initial-cards.js';
+
 import {checkingFormFilling} from './validate.js';
+
+import {Card} from './Card.js';
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 
@@ -31,7 +34,7 @@ const popupZoomSubtitle = popupZoom.querySelector('.popup__subtitle');
 
 const popupZoomImage = popupZoom.querySelector('.popup__image');
 
-const elementsTemplate = document.querySelector('#elements-template').content;
+const selectorTemplate = '#elements-template';
 
 const elementsCards = document.querySelector('.elements__cards');
 
@@ -43,7 +46,10 @@ function openPopup(popup) {
   checkingFormFilling(popup);
 }
 
-function openImagePopup(elementImage) {
+export function openImagePopup(elementImage) {
+  popupZoomImage.src = '';
+  popupZoomImage.alt = '';
+  popupZoomSubtitle.textContent = '';
   popupZoomImage.src = elementImage.src;
   popupZoomImage.alt = elementImage.alt;
   popupZoomSubtitle.textContent = elementImage.alt;
@@ -77,16 +83,10 @@ function submitEditProfileForm(event) {
 function addCard(cardInfo) {elementsCards.prepend(createCard(cardInfo))}
 
 function createCard(cardInfo) {
-  const elementCard = elementsTemplate.querySelector('.elements__element').cloneNode(true);
-  elementCard.querySelector('.elements__title').textContent = cardInfo.name;
-  elementCard.querySelector('.elements__delete').addEventListener('click', event => event.currentTarget.closest('.elements__element').remove());
-  elementCard.querySelector('.elements__group').addEventListener('click', event => event.target.classList.toggle('elements__group_active'));
-  const elementImage = elementCard.querySelector('.elements__mask-group');
-  elementImage.src = cardInfo.link;
-  elementImage.alt = cardInfo.name;
-  elementImage.addEventListener('click', () => openImagePopup(elementImage));
-  return elementCard;
-}
+  const card = new Card(cardInfo, selectorTemplate);
+  const cardElement = card.generateCard();
+  return cardElement;
+};
 
 function closePopup(popup) {
   checkingFormFilling(popup);
