@@ -1,3 +1,6 @@
+import {initialCards} from './initial-cards.js';
+import {checkingFormFilling} from './validate.js';
+
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');

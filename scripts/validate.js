@@ -34,12 +34,12 @@ function deactivateButton(formData, inputElement) {
   submitButton.classList.add(formData.inactiveButtonClass);
 }
 
-function checkingFormFilling(popup) {
+export function checkingFormFilling(popup) {
   const inputList = popup.querySelectorAll('input');
   inputList.forEach(inputElement => {
     disableErrorText(config, inputElement);
     hideInputError(config, inputElement);
-    changingButtonState(config, inputElement)
+    changingButtonState(config, inputElement);
   })
 }
 
