@@ -1,6 +1,6 @@
 .popup__input {
-  margin: 12px 0 0;
-  padding: 0 0 10px;
+  margin: 0;
+  padding: 0 0 7px;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -16,9 +16,9 @@
   /*border: 1px solid red;*/
 }
 
-.popup__input:nth-child(1) {
+/*.popup__input:nth-child(1) {
   margin: 0;
-}
+}*/
 
 .popup__input::-moz-placeholder {
   color: #C4C4C4;
