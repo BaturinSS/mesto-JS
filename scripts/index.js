@@ -1,8 +1,17 @@
 import {initialCards} from './initial-cards.js';
 
-import {checkingFormFilling} from './validate.js';
-
 import {Card} from './Card.js';
+
+import {FormValidator} from './FormValidator.js';
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  textErrorClass: 'popup__input-error_active'
+}
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 
@@ -43,7 +52,11 @@ const buttonsCloseList = document.querySelectorAll('.popup__close');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   closePopupEventEscapeKey();
-  checkingFormFilling(popup);
+  const formActivePopup = popup.querySelector('form');
+  if (formActivePopup) {
+    const formValidator = new FormValidator(config, formActivePopup);
+    formValidator.enableValidation();
+  }
 }
 
 export function openImagePopup(elementImage) {
@@ -89,7 +102,6 @@ function createCard(cardInfo) {
 };
 
 function closePopup(popup) {
-  checkingFormFilling(popup);
   popup.classList.remove('popup_opened');
   removeEventEscapeKey();
 }
