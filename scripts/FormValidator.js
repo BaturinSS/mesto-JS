@@ -83,6 +83,6 @@ export class FormValidator {
       this._disableErrorText(inputElement);
       this._hideInputError(inputElement);
       this._changingButtonState(inputElement);
-    });
+    })
   }
 }
