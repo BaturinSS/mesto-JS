@@ -13,7 +13,6 @@ const config = {
   textErrorClass: 'popup__input-error_active'
 }
 
-
 const popupEditProfile = document.querySelector('.popup_type_profile-edit');
 
 const profileOpenPopupButtonEdit = document.querySelector('.profile__button-edit');
