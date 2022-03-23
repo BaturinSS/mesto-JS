@@ -84,6 +84,7 @@ function openAddImagePopup() {
 function submitAddCardForm(event) {
   event.preventDefault();
   addCard({name: inputCardTitle.value, link: inputCardLink.value});
+  formAddCardValidator.deactivateButton();
   closePopup(popupAddCard);
 }
 

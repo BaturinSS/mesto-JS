@@ -19,7 +19,7 @@ export class FormValidator {
     })
   }
 
-  _deactivateButton() {
+  deactivateButton() {
     this._submitButton.setAttribute('disabled', true);
     this._submitButton.classList.add(this._inactiveButtonClass);
   }
@@ -40,7 +40,7 @@ export class FormValidator {
     if (!validityFormActive) {
       this._activationButton();
     } else {
-      this._deactivateButton();
+      this.deactivateButton();
     }
   }
 

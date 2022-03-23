@@ -27,8 +27,10 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.elements__delete').addEventListener('click', event => {
-      event.currentTarget.closest('.elements__element').remove()});
+    this._element.querySelector('.elements__delete').addEventListener('click', () => {
+      this._element.remove();
+      this._element = null;
+    })
 
     this._element.querySelector('.elements__group').addEventListener('click', event => {
       event.target.classList.toggle('elements__group_active')});
