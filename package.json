@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "Одностраничный сайт про места в России. Практическая работа No 4 по курсу Веб-разработчик.",
-  "main": "index.js",
+  "main": "babel.config.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack server"
@@ -20,7 +20,8 @@
   "homepage": "https://github.com/BaturinSS/mesto#readme",
   "dependencies": {
     "core-js": "^3.21.1",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
