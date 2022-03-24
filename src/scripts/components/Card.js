@@ -1,4 +1,4 @@
-import {openImagePopup} from './pages/index.js';
+import {openImagePopup} from '../pages/index.js';
 
 export class Card {
   constructor(cardInfo, selectorTemplate) {
