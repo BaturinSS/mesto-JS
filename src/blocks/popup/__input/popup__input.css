@@ -16,10 +16,6 @@
   /*border: 1px solid red;*/
 }
 
-/*.popup__input:nth-child(1) {
-  margin: 0;
-}*/
-
 .popup__input::-moz-placeholder {
   color: #C4C4C4;
 }

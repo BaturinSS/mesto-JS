@@ -19,7 +19,7 @@ module.exports = {
     static: path.resolve(__dirname, './dist'),
     compress: true,
     port: 8080,
-    open: true
+    //open: true
   },
 
   module: {
@@ -35,17 +35,26 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, {
-          loader: 'css-loader'
-        }]
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 }
+          },
+          {
+            loader: 'postcss-loader'
+          }
+        ]
       }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
+    new HtmlWebpackPlugin(
+      {
+        template: './src/index.html'
+      }
+    ),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
   ]
 };
