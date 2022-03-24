@@ -1,10 +1,10 @@
-import '../pages/index.css';
+import '../../styles/index.css';
 
-import {initialCards} from './initial-cards.js';
+import {initialCards} from '../initial-cards.js';
 
-import {Card} from './Card.js';
+import {Card} from '../Card.js';
 
-import {FormValidator} from './FormValidator.js';
+import {FormValidator} from '../FormValidator.js';
 
 const config = {
   formSelector: '.popup__form',
