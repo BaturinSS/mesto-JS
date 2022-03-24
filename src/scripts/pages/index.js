@@ -8,16 +8,13 @@ import { FormValidator } from '../components/FormValidator.js';
 
 import { config } from '../utils/configValidation.js';
 
+import * as utils from '../utils/utils.js'
+
 import * as constants from '../utils/constants.js';
 
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  closePopupEventEscapeKey();
-}
 
 export function openImagePopup(linkImage, nameImage) {
   constants.popupZoomImage.src = '';
@@ -26,34 +23,34 @@ export function openImagePopup(linkImage, nameImage) {
   constants.popupZoomImage.src = linkImage;
   constants.popupZoomImage.alt = nameImage;
   constants.popupZoomSubtitle.textContent = nameImage;
-  openPopup(constants.popupZoom);
+  utils.openPopup(constants.popupZoom);
 }
 
 function openEditProfilePopup() {
   constants.inputUserName.value = constants.profileName.textContent;
   constants.inputUserProfession.value = constants.profileSubtitle.textContent;
   formEditProfileValidator.clearErrorsForm();
-  openPopup(constants.popupEditProfile);
+  utils.openPopup(constants.popupEditProfile);
 }
 
 function openAddImagePopup() {
   constants.formAddCard.reset();
   formAddCardValidator.clearErrorsForm();
-  openPopup(constants.popupAddCard);
+  utils.openPopup(constants.popupAddCard);
 }
 
 function submitAddCardForm(event) {
   event.preventDefault();
-  addCard({name: constants.inputCardTitle.value, link: constants.inputCardLink.value});
+  addCard({ name: constants.inputCardTitle.value, link: constants.inputCardLink.value });
   formAddCardValidator.deactivateButton();
-  closePopup(constants.popupAddCard);
+  utils.closePopup(constants.popupAddCard);
 }
 
 function submitEditProfileForm(event) {
   event.preventDefault();
   constants.profileName.textContent = constants.inputUserName.value;
   constants.profileSubtitle.textContent = constants.inputUserProfession.value;
-  closePopup(constants.popupEditProfile);
+  utils.closePopup(constants.popupEditProfile);
 }
 
 function addCard(cardInfo) {
@@ -65,34 +62,6 @@ function createCard(cardInfo) {
   const cardElement = card.generateCard();
   return cardElement;
 }
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  removeEventEscapeKey();
-}
-
-function closePopupEventEscapeKey() {
-  document.addEventListener('keydown', checkingKeystroke);
-}
-
-function checkingKeystroke(event) {
-  if (event.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
-  }
-}
-
-function removeEventEscapeKey() {
-  document.removeEventListener('keydown', checkingKeystroke);
-}
-
-constants.popups.forEach(popup => {
-  popup.addEventListener('mousedown', event => {
-    if (event.target.classList.contains('popup_opened') | event.target.classList.contains('popup__image-cross')) {
-      closePopup(popup);
-    }
-  })
-})
 
 constants.profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 
