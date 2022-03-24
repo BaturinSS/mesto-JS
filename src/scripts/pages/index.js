@@ -12,19 +12,19 @@ import * as utils from '../utils/utils.js'
 
 import * as constants from '../utils/constants.js';
 
+import { Section } from '../components/Section.js';
+
+import { PopupWithImage } from '../components/PopupWithImage.js';
+
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
 
-export function openImagePopup(linkImage, nameImage) {
-  constants.popupZoomImage.src = '';
-  constants.popupZoomImage.alt = '';
-  constants.popupZoomSubtitle.textContent = '';
-  constants.popupZoomImage.src = linkImage;
-  constants.popupZoomImage.alt = nameImage;
-  constants.popupZoomSubtitle.textContent = nameImage;
-  utils.openPopup(constants.popupZoom);
-}
+const section = new Section({ items: initialCards, renderer: addCard }, '.elements__cards');
+section.rendererItems();
+
+const openImagePopup  = new PopupWithImage('.popup_type_image-zoom');
+openImagePopup.setEventListeners();
 
 function openEditProfilePopup() {
   constants.inputUserName.value = constants.profileName.textContent;
@@ -41,7 +41,10 @@ function openAddImagePopup() {
 
 function submitAddCardForm(event) {
   event.preventDefault();
-  addCard({ name: constants.inputCardTitle.value, link: constants.inputCardLink.value });
+  section.setItem(createCard({
+    name: constants.inputCardTitle.value,
+    link: constants.inputCardLink.value
+  }));
   formAddCardValidator.deactivateButton();
   utils.closePopup(constants.popupAddCard);
 }
@@ -58,7 +61,9 @@ function addCard(cardInfo) {
 }
 
 function createCard(cardInfo) {
-  const card = new Card(cardInfo, constants.selectorTemplate);
+  const card = new Card(cardInfo, constants.selectorTemplate, () => {
+    openImagePopup.open(cardInfo.name, cardInfo.link);
+  });
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -70,8 +75,6 @@ constants.profileOpenPopupButtonAdd.addEventListener('click', openAddImagePopup)
 constants.formEditProfile.addEventListener('submit', submitEditProfileForm);
 
 constants.formAddCard.addEventListener('submit', submitAddCardForm);
-
-initialCards.forEach(cardInfo => addCard(cardInfo));
 
 formAddCardValidator.enableValidation();
 

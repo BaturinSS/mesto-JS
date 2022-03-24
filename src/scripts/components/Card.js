@@ -1,10 +1,9 @@
-import {openImagePopup} from '../pages/index.js';
-
 export class Card {
-  constructor(cardInfo, selectorTemplate) {
+  constructor(cardInfo, selectorTemplate, handleImageClick) {
     this._name = cardInfo.name;
     this._link = cardInfo.link;
     this._selectorTemplate = selectorTemplate;
+    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {
@@ -36,7 +35,9 @@ export class Card {
       event.target.classList.toggle('elements__group_active')});
 
     this._elementImage.addEventListener('click', () => {
-      openImagePopup(this._link, this._name);
+      this._handleImageClick();
+
+      //this._openImagePopup(this._link, this._name);
     })
   }
 }
