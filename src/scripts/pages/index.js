@@ -20,6 +20,7 @@ import { PopupWithForm } from '../components/PopupWithForm';
 
 import { UserInfo } from '../components/UserInfo';
 
+
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
