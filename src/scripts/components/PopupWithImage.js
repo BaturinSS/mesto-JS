@@ -1,15 +1,16 @@
 import { Popup } from '../components/Popup.js';
 
-import * as constants from '../utils/constants.js';
-
 export class PopupWithImage extends Popup {
+  constructor(popupSelector) {
+    super(popupSelector);
+    this._popupZoomSubtitle = this._popup.querySelector('.popup__subtitle');
+    this._popupZoomImage = this._popup.querySelector('.popup__image');
+  };
+
   open(nameImage, linkImage) {
-    constants.popupZoomImage.src = '';
-    constants.popupZoomImage.alt = '';
-    constants.popupZoomSubtitle.textContent = '';
-    constants.popupZoomImage.src = linkImage;
-    constants.popupZoomImage.alt = nameImage;
-    constants.popupZoomSubtitle.textContent = nameImage;
+    this._popupZoomImage.src = linkImage;
+    this._popupZoomImage.alt = nameImage;
+    this._popupZoomSubtitle.textContent = nameImage;
     super.open();
-  }
-}
+  };
+};

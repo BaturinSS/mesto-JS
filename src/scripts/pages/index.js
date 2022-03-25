@@ -8,7 +8,7 @@ import { FormValidator } from '../components/FormValidator.js';
 
 import { config } from '../utils/configValidation.js';
 
-import * as utils from '../utils/utils.js'
+import * as utils from '../utils/utils.js';
 
 import * as constants from '../utils/constants.js';
 
@@ -24,7 +24,7 @@ const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
 
-const section = new Section({ items: initialCards, renderer: addCard }, '.elements__cards');
+const section = new Section( addCard, '.elements__cards');
 
 const popupWithImage  = new PopupWithImage('.popup_type_image-zoom');
 
@@ -32,7 +32,10 @@ const popupAddImage  = new PopupWithForm('.popup_type_card-add', submitAddCardFo
 
 const popupEditProfile  = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
 
-const userInfo = new UserInfo({ profileNameSelector: '.profile__name', profileJobSelector: '.profile__subtitle' });
+const userInfo = new UserInfo({
+  profileNameSelector: '.profile__name',
+  profileJobSelector: '.profile__subtitle'
+});
 
 function openEditProfilePopup() {
   const { name, job } = userInfo.getUserInfo();
@@ -40,13 +43,13 @@ function openEditProfilePopup() {
   constants.inputUserProfession.value = job;
   formEditProfileValidator.clearErrorsForm();
   popupEditProfile.open();
-}
+};
 
 function openAddImagePopup() {
   constants.formAddCard.reset();
   formAddCardValidator.clearErrorsForm();
-  popupAddImage.open();;
-}
+  popupAddImage.open();
+};
 
 function submitAddCardForm(data) {
   section.setItem(createCard({
@@ -55,17 +58,17 @@ function submitAddCardForm(data) {
   }));
   formAddCardValidator.deactivateButton();
   popupAddImage.close();
-}
+};
 
 function submitEditProfileForm(data) {
-  const {userName, userProfession} = data;
+  const { userName, userProfession } = data;
   userInfo.setUserInfo(userName, userProfession);
   popupEditProfile.close();
-}
+};
 
 function addCard(cardInfo) {
-  constants.elementsCards.prepend(createCard(cardInfo));
-}
+  section.setItem(createCard(cardInfo));
+};
 
 function createCard(cardInfo) {
   const card = new Card(cardInfo, constants.selectorTemplate, () => {
@@ -73,7 +76,7 @@ function createCard(cardInfo) {
   });
   const cardElement = card.generateCard();
   return cardElement;
-}
+};
 
 constants.profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 
@@ -83,7 +86,7 @@ formAddCardValidator.enableValidation();
 
 formEditProfileValidator.enableValidation();
 
-section.rendererItems();
+section.rendererItems(initialCards);
 
 popupWithImage.setEventListeners();
 

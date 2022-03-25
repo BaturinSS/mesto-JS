@@ -31,12 +31,10 @@ export class Card {
       this._element.remove();
       this._element = null;
     });
-
     this._likeButton.addEventListener('click', () => this._handleLikeButton());
-
     this._elementImage.addEventListener('click', this._handleImageClick);
   };
-
+  
   _handleLikeButton() {
     this._likeButton.classList.toggle('elements__group_active');
   };

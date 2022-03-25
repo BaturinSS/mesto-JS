@@ -5,4 +5,4 @@ export const config = {
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_type_error',
   textErrorClass: 'popup__input-error_active'
-}
+};
