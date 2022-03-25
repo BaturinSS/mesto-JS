@@ -15,3 +15,4 @@ export const profileOpenPopupButtonAdd = document.querySelector('.profile__butto
 export const formAddCard = popupAddCard.querySelector('.popup__form');
 
 export const selectorTemplate = '#elements-template';
+
