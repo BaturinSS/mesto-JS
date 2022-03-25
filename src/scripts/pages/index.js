@@ -16,44 +16,51 @@ import { Section } from '../components/Section.js';
 
 import { PopupWithImage } from '../components/PopupWithImage.js';
 
+import { PopupWithForm } from '../components/PopupWithForm';
+
+import { UserInfo } from '../components/UserInfo';
+
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
 
 const section = new Section({ items: initialCards, renderer: addCard }, '.elements__cards');
-section.rendererItems();
 
-const openImagePopup  = new PopupWithImage('.popup_type_image-zoom');
-openImagePopup.setEventListeners();
+const popupWithImage  = new PopupWithImage('.popup_type_image-zoom');
+
+const popupAddImage  = new PopupWithForm('.popup_type_card-add', submitAddCardForm);
+
+const popupEditProfile  = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
+
+const userInfo = new UserInfo({ profileNameSelector: '.profile__name', profileJobSelector: '.profile__subtitle' });
 
 function openEditProfilePopup() {
-  constants.inputUserName.value = constants.profileName.textContent;
-  constants.inputUserProfession.value = constants.profileSubtitle.textContent;
+  const { name, job } = userInfo.getUserInfo();
+  constants.inputUserName.value = name;
+  constants.inputUserProfession.value = job;
   formEditProfileValidator.clearErrorsForm();
-  utils.openPopup(constants.popupEditProfile);
+  popupEditProfile.open();
 }
 
 function openAddImagePopup() {
   constants.formAddCard.reset();
   formAddCardValidator.clearErrorsForm();
-  utils.openPopup(constants.popupAddCard);
+  popupAddImage.open();;
 }
 
-function submitAddCardForm(event) {
-  event.preventDefault();
+function submitAddCardForm(data) {
   section.setItem(createCard({
-    name: constants.inputCardTitle.value,
-    link: constants.inputCardLink.value
+    name: data.cardTitle,
+    link: data.cardLink
   }));
   formAddCardValidator.deactivateButton();
-  utils.closePopup(constants.popupAddCard);
+  popupAddImage.close();
 }
 
-function submitEditProfileForm(event) {
-  event.preventDefault();
-  constants.profileName.textContent = constants.inputUserName.value;
-  constants.profileSubtitle.textContent = constants.inputUserProfession.value;
-  utils.closePopup(constants.popupEditProfile);
+function submitEditProfileForm(data) {
+  const {userName, userProfession} = data;
+  userInfo.setUserInfo(userName, userProfession);
+  popupEditProfile.close();
 }
 
 function addCard(cardInfo) {
@@ -62,7 +69,7 @@ function addCard(cardInfo) {
 
 function createCard(cardInfo) {
   const card = new Card(cardInfo, constants.selectorTemplate, () => {
-    openImagePopup.open(cardInfo.name, cardInfo.link);
+    popupWithImage.open(cardInfo.name, cardInfo.link);
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -72,10 +79,14 @@ constants.profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePo
 
 constants.profileOpenPopupButtonAdd.addEventListener('click', openAddImagePopup);
 
-constants.formEditProfile.addEventListener('submit', submitEditProfileForm);
-
-constants.formAddCard.addEventListener('submit', submitAddCardForm);
-
 formAddCardValidator.enableValidation();
 
 formEditProfileValidator.enableValidation();
+
+section.rendererItems();
+
+popupWithImage.setEventListeners();
+
+popupAddImage.setEventListeners();
+
+popupEditProfile.setEventListeners();

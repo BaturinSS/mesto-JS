@@ -12,7 +12,7 @@ export class FormValidator {
   }
 
   clearErrorsForm() {
-    this._arrayInputsFormActive.forEach(inputElement => {
+    this._arrayInputsFormActive.forEach((inputElement) => {
       inputElement.classList.remove(this._inputErrorClass);
       this._disableErrorText(inputElement);
       this._changingButtonState();
@@ -30,7 +30,7 @@ export class FormValidator {
   }
 
   _hasInvalidInput() {
-    return this._arrayInputsFormActive.some(inputElement => {
+    return this._arrayInputsFormActive.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   }
@@ -68,13 +68,17 @@ export class FormValidator {
   }
 
   _setEventListeners(inputElement) {
+    this._formActivePopup.addEventListener('submit', (event) => {
+      event.preventDefault()
+    });
+
     inputElement.addEventListener('input', () => {
       this._isValid(inputElement);
     })
   }
 
   enableValidation() {
-    this._arrayInputsFormActive.forEach(inputElement => {
+    this._arrayInputsFormActive.forEach((inputElement) => {
       this._setEventListeners(inputElement);
     })
   }

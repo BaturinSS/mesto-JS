@@ -31,13 +31,11 @@ export class Card {
       this._element = null;
     })
 
-    this._element.querySelector('.elements__group').addEventListener('click', event => {
+    this._element.querySelector('.elements__group').addEventListener('click', (event) => {
       event.target.classList.toggle('elements__group_active')});
 
     this._elementImage.addEventListener('click', () => {
       this._handleImageClick();
-
-      //this._openImagePopup(this._link, this._name);
     })
   }
 }
