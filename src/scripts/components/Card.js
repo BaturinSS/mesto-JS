@@ -8,10 +8,10 @@ export class Card {
 
   _getTemplate() {
     const elementCard = document
-    .querySelector(this._selectorTemplate)
-    .content
-    .querySelector('.elements__element')
-    .cloneNode(true);
+      .querySelector(this._selectorTemplate)
+      .content
+      .querySelector('.elements__element')
+      .cloneNode(true);
     return elementCard;
   };
 
@@ -34,7 +34,7 @@ export class Card {
     this._likeButton.addEventListener('click', () => this._handleLikeButton());
     this._elementImage.addEventListener('click', this._handleImageClick);
   };
-  
+
   _handleLikeButton() {
     this._likeButton.classList.toggle('elements__group_active');
   };
