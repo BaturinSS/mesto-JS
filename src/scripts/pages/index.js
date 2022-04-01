@@ -24,11 +24,14 @@ import { UserInfo } from '../components/UserInfo';
 
 import { api } from '../components/Api';
 
+let userId;
+
 api.getUserInfo()
   .then(res => {
     res
       ? userInfo.setUserInfo(res.name, res.about)
       : userInfo.setUserInfo(userInfoDefault.name, userInfoDefault.about)
+    userId = res._id;
   });
 
 api.getCards()
@@ -50,9 +53,7 @@ const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardFor
 
 const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
 
-const popupDeleteCard = new PopupWithForm('.popup_type_delete-confirm', () => {
-  console.log('popupDeleteCard')
-});
+const popupDeleteCard = new PopupWithForm('.popup_type_delete-confirm');
 
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
@@ -77,10 +78,7 @@ function submitAddCardForm(data) {
   const createdSubmit = true;
   api.addCard(data.cardTitle, data.cardLink)
     .then(res => {
-      section.setItem(createCard({
-        name: res.name,
-        link: res.link
-      }), createdSubmit);
+      section.setItem(createCard(res), createdSubmit);
       formAddCardValidator.deactivateButton();
       popupAddImage.close();
     })
@@ -102,11 +100,24 @@ function addCard(cardInfo) {
 };
 
 function createCard(cardInfo) {
-  const card = new Card(cardInfo, constants.selectorTemplate, () => {
-    popupWithImage.open(cardInfo.name, cardInfo.link);
-  }, () => {
-    popupDeleteCard.open();
-  });
+  const card = new Card(
+    cardInfo,
+    constants.selectorTemplate,
+    () => {
+      popupWithImage.open(cardInfo.name, cardInfo.link);
+    },
+    (id) => {
+      popupDeleteCard.open();
+      popupDeleteCard.changeSubmitHandler(() => {
+        api.deleteCard(id)
+          .then(() => {
+            card.deleteCard();
+            popupDeleteCard.close();
+          })
+      });
+    },
+    userId
+  );
   const cardElement = card.generateCard();
   return cardElement;
 };

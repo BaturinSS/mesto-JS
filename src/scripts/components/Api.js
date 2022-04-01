@@ -41,6 +41,15 @@ class Api {
       .then(res => res.ok ? res.json() : Promise.reject(`Error addCard(): № ${res.status}`))
       .catch(console.log)
   }
+
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error deleteCard(): № ${res.status}`))
+      .catch(console.log)
+  }
 }
 
 export const api = new Api({

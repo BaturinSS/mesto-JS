@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-      publicPath: ''
+    publicPath: ''
   },
 
   mode: 'development',
@@ -19,7 +19,7 @@ module.exports = {
     static: path.resolve(__dirname, './dist'),
     compress: true,
     port: 8080,
-    open: true
+    //open: true
   },
 
   module: {
@@ -48,7 +48,7 @@ module.exports = {
       }
     ]
   },
-  
+
   plugins: [
     new HtmlWebpackPlugin(
       {
