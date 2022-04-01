@@ -1,37 +1,54 @@
 import '../../styles/index.css';
 
-import { initialCards } from '../utils/initial-cards.js';
+import { initialCardsDefault } from '../utils/initialCardsDefault';
 
-import { Card } from '../components/Card.js';
+import { userInfoDefault } from '../utils/userInfoDefault'
 
-import { FormValidator } from '../components/FormValidator.js';
+import { Card } from '../components/Card';
 
-import { config } from '../utils/configValidation.js';
+import { FormValidator } from '../components/FormValidator';
+
+import { config } from '../utils/configValidation';
 
 import * as utils from '../utils/utils.js';
 
-import * as constants from '../utils/constants.js';
+import * as constants from '../utils/constants';
 
-import { Section } from '../components/Section.js';
+import { Section } from '../components/Section';
 
-import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithImage } from '../components/PopupWithImage';
 
 import { PopupWithForm } from '../components/PopupWithForm';
 
 import { UserInfo } from '../components/UserInfo';
 
+import { api } from '../components/Api';
+
+api.getUserInfo()
+  .then(res => {
+    res
+      ? userInfo.setUserInfo(res.name, res.about)
+      : userInfo.setUserInfo(userInfoDefault.name, userInfoDefault.about)
+  });
+
+api.getCards()
+  .then(initialCards => {
+    initialCards
+      ? section.rendererItems(initialCards)
+      : section.rendererItems(initialCardsDefault)
+  })
 
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
 
-const section = new Section( addCard, '.elements__cards');
+const section = new Section(addCard, '.elements__cards');
 
-const popupWithImage  = new PopupWithImage('.popup_type_image-zoom');
+const popupWithImage = new PopupWithImage('.popup_type_image-zoom');
 
-const popupAddImage  = new PopupWithForm('.popup_type_card-add', submitAddCardForm);
+const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm);
 
-const popupEditProfile  = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
+const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
 
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
@@ -63,7 +80,12 @@ function submitAddCardForm(data) {
 
 function submitEditProfileForm(data) {
   const { userName, userProfession } = data;
-  userInfo.setUserInfo(userName, userProfession);
+  api.editUserInfo(userName, userProfession)
+    .then(res => {
+      res
+        ? userInfo.setUserInfo(res.name, res.about)
+        : userInfo.setUserInfo(userName, userProfession)
+    })
   popupEditProfile.close();
 };
 
@@ -86,8 +108,6 @@ constants.profileOpenPopupButtonAdd.addEventListener('click', openAddImagePopup)
 formAddCardValidator.enableValidation();
 
 formEditProfileValidator.enableValidation();
-
-section.rendererItems(initialCards);
 
 popupWithImage.setEventListeners();
 
