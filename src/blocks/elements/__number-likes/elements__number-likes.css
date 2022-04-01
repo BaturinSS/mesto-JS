@@ -1,0 +1,8 @@
+.elements__number-likes {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  padding: 0;
+  margin: 0;
+  transition: 0.5s;
+}

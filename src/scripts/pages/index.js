@@ -70,12 +70,16 @@ function openAddImagePopup() {
 };
 
 function submitAddCardForm(data) {
-  section.setItem(createCard({
-    name: data.cardTitle,
-    link: data.cardLink
-  }));
-  formAddCardValidator.deactivateButton();
-  popupAddImage.close();
+  const createdSubmit = true;
+  api.addCard(data.cardTitle, data.cardLink)
+    .then(res => {
+      section.setItem(createCard({
+        name: res.name,
+        link: res.link
+      }), createdSubmit);
+      formAddCardValidator.deactivateButton();
+      popupAddImage.close();
+    })
 };
 
 function submitEditProfileForm(data) {
@@ -85,8 +89,8 @@ function submitEditProfileForm(data) {
       res
         ? userInfo.setUserInfo(res.name, res.about)
         : userInfo.setUserInfo(userName, userProfession)
+      popupEditProfile.close();
     })
-  popupEditProfile.close();
 };
 
 function addCard(cardInfo) {

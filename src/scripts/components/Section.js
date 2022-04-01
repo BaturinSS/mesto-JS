@@ -10,7 +10,9 @@ export class Section {
     });
   };
 
-  setItem(element) {
-    this._container.prepend(element);
+  setItem(element, createdSubmit) {
+    createdSubmit
+      ? this._container.prepend(element)
+      : this._container.append(element)
   };
 };
