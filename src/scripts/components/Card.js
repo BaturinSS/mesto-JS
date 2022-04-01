@@ -1,5 +1,5 @@
 export class Card {
-  constructor(cardInfo, selectorTemplate, handleImageClick, handleDeleteClick, userId) {
+  constructor(cardInfo, selectorTemplate, handleImageClick, handleDeleteClick, userId, handleLikeClick) {
     this._name = cardInfo.name;
     this._link = cardInfo.link;
     this._likes = cardInfo.likes;
@@ -9,6 +9,7 @@ export class Card {
     this._selectorTemplate = selectorTemplate;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
   };
 
   _getTemplate() {
@@ -28,7 +29,7 @@ export class Card {
     this._element.querySelector('.elements__title').textContent = this._name;
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
-    this._setLikes();
+    this.setLikes(this._likes);
     if (this._ownerId !== this._userId) {
       this._element.querySelector('.elements__delete').style.display = 'none';
     };
@@ -40,8 +41,8 @@ export class Card {
       this._handleDeleteClick(this._id);
 
     });
-    this._likeButton.addEventListener('click', () => this._handleLikeButton());
-    this._elementImage.addEventListener('click', this._handleImageClick);
+    this._likeButton.addEventListener('click', () => this._handleLikeClick(this._id));
+    this._elementImage.addEventListener('click', () => this._handleImageClick());
   };
 
   deleteCard() {
@@ -49,12 +50,27 @@ export class Card {
     this._element = null;
   }
 
-  _handleLikeButton() {
-    this._likeButton.classList.toggle('elements__group_active');
+  _fillLike() {
+    this._likeButton.classList.add('elements__group_active');
   };
 
-  _setLikes() {
+  _removeLike() {
+    this._likeButton.classList.remove('elements__group_active');
+  };
+
+  isLiked() {
+    const userHasLikedCard = this._likes.find(user => user._id === this._userId);
+    return userHasLikedCard;
+  }
+
+  setLikes(newLikes) {
+    this._likes = newLikes;
     const likeCountElement = this._element.querySelector('.elements__number-likes');
     likeCountElement.textContent = this._likes.length;
+    if (this.isLiked()) {
+      this._fillLike()
+    } else {
+      this._removeLike();
+    }
   }
 };

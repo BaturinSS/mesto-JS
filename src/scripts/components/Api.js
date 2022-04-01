@@ -5,14 +5,26 @@ class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, { method: 'GET', headers: this._headers })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error getUserInfo(): № ${res.status}`))
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: this._headers
+    })
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error getUserInfo(): № ${res.status}`))
       .catch(console.log)
   }
 
   getCards() {
-    return fetch(`${this._baseUrl}/cards`, { method: 'GET', headers: this._headers })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error getCards(): № ${res.status}`))
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
+      headers: this._headers
+    })
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error getCards(): № ${res.status}`))
       .catch(console.log)
   }
 
@@ -25,7 +37,10 @@ class Api {
         about
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error editUserInfo(): № ${res.status}`))
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error editUserInfo(): № ${res.status}`))
       .catch(console.log)
   }
 
@@ -38,7 +53,10 @@ class Api {
         link
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error addCard(): № ${res.status}`))
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error addCard(): № ${res.status}`))
       .catch(console.log)
   }
 
@@ -47,7 +65,34 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error deleteCard(): № ${res.status}`))
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error deleteCard(): № ${res.status}`))
+      .catch(console.log)
+  }
+
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error addLike(): № ${res.status}`))
+      .catch(console.log)
+  }
+
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error deleteLike(): № ${res.status}`))
       .catch(console.log)
   }
 }

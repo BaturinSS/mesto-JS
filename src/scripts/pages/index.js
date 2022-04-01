@@ -116,7 +116,20 @@ function createCard(cardInfo) {
           })
       });
     },
-    userId
+    userId,
+    (id) => {
+      if (card.isLiked()) {
+        api.deleteLike(id)
+          .then(res => {
+            card.setLikes(res.likes)
+          })
+      } else {
+        api.addLike(id)
+          .then(res => {
+            card.setLikes(res.likes)
+          })
+      }
+    }
   );
   const cardElement = card.generateCard();
   return cardElement;
