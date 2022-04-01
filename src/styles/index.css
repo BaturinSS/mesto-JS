@@ -29,10 +29,13 @@
 @import url(../blocks/elements/__element/elements__element.css);
 @import url(../blocks/elements/__delete/elements__delete.css);
 @import url(../blocks/elements/__image-delete/elements__image-delete.css);
+@import url(../blocks/elements/__group-likes/elements__group-likes.css);
+@import url(../blocks/elements/__number-likes/elements__number-likes.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_type/_delete-confirm/popup_type_delete-confirm.css);
 @import url(../blocks/popup/__box/popup__box.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__container/popup__container.css);
@@ -43,9 +46,11 @@
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/__subtitle/popup__subtitle.css);
 @import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__title/_delete-confirm/popup__title_delete-confirm.css);
 @import url(../blocks/popup/_image-zoom/popup_image-zoom.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css);
+@import url(../blocks/popup/__save-button/_delete-confirm/popup__save-button_delete-confirm.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__error/popup__error_visible.css);

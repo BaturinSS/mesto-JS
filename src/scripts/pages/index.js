@@ -50,6 +50,10 @@ const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardFor
 
 const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
 
+const popupDeleteCard = new PopupWithForm('.popup_type_delete-confirm', () => {
+  console.log('popupDeleteCard')
+});
+
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
   profileJobSelector: '.profile__subtitle'
@@ -100,6 +104,8 @@ function addCard(cardInfo) {
 function createCard(cardInfo) {
   const card = new Card(cardInfo, constants.selectorTemplate, () => {
     popupWithImage.open(cardInfo.name, cardInfo.link);
+  }, () => {
+    popupDeleteCard.open();
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -118,3 +124,5 @@ popupWithImage.setEventListeners();
 popupAddImage.setEventListeners();
 
 popupEditProfile.setEventListeners();
+
+popupDeleteCard.setEventListeners();

@@ -68,14 +68,25 @@
         </form>
       </div>
     </div>
-    <div class="popup popup_type_image-zoom">
-      <div class="popup__box">
-        <button class="popup__close" type="button"><img class="popup__image-cross"
-            src="<%=require('./images/image-cross.svg')%>" alt="иконка"></button>
-        <img class="popup__image" src="#" alt="фотография">
-        <h2 class="popup__subtitle"></h2>
-      </div>
+  </div>
+  <div class="popup popup_type_delete-confirm">
+    <div class="popup__container">
+      <button class="popup__close" type="button"><img class="popup__image-cross"
+          src="<%=require('./images/image-cross.svg')%>" alt="иконка"></button>
+      <h3 class="popup__title popup__title_delete-confirm">Вы уверены?</h3>
+      <form class="popup__form" name="deleteConfirm" action="#" method="get" novalidate>
+        <button class="popup__save-button popup__save-button_delete-confirm" type="submit">Да</button>
+      </form>
     </div>
+  </div>
+  <div class="popup popup_type_image-zoom">
+    <div class="popup__box">
+      <button class="popup__close" type="button"><img class="popup__image-cross"
+          src="<%=require('./images/image-cross.svg')%>" alt="иконка"></button>
+      <img class="popup__image" src="#" alt="фотография">
+      <h2 class="popup__subtitle"></h2>
+    </div>
+  </div>
   </div>
   <template id="elements-template">
     <li class="elements__element">
@@ -87,10 +98,13 @@
           <h2 class="elements__title"></h2>
         </figcaption>
       </figure>
-      <button type="button" class="elements__group"></button>
-      <span class="elements__number-likes">5</span>
+      <div class="elements__group-likes">
+        <button type="button" class="elements__group"></button>
+        <span class="elements__number-likes"></span>
+      </div>
     </li>
   </template>
+  <script async src="//pixel-perfect.org/service/script.js?guid=fd90b0fb91666982c469831a6653de3d"></script>
 </body>
 
 </html>
