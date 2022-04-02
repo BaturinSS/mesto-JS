@@ -95,6 +95,21 @@ class Api {
           : Promise.reject(`Error deleteLike(): № ${res.status}`))
       .catch(console.log)
   }
+
+  editAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    })
+      .then(res =>
+        res.ok
+          ? res.json()
+          : Promise.reject(`Error editAvatar(): № ${res.status}`))
+      .catch(console.log)
+  }
 }
 
 export const api = new Api({

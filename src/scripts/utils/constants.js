@@ -15,3 +15,9 @@ export const profileOpenPopupButtonAdd = document.querySelector('.profile__butto
 export const formAddCard = popupAddCard.querySelector('.popup__form');
 
 export const selectorTemplate = '#elements-template';
+
+export const popupEditAvatar = document.querySelector('.popup_type_avatar-edit');
+
+export const avatarOpenPopupButtonEdit = document.querySelector('.profile__ellipse');
+
+export const formEditAvatar = popupEditAvatar.querySelector('.popup__form');
