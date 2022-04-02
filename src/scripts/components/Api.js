@@ -7,7 +7,7 @@ class Api {
   _checkResponse(res) {
     return res.ok
       ? res.json()
-      : Promise.reject(`Ошибка сервера: "${res.statusText} ${res.status}"`)
+      : Promise.reject(res.json())
   }
 
   getUserInfo() {
@@ -19,7 +19,7 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards1`, {
       method: 'GET',
       headers: this._headers
     })

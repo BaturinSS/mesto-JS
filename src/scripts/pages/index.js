@@ -73,7 +73,11 @@ function submitEditAvatarForm(data, buttonSubmit) {
       urlAvatar = res.avatar;
       popupEditAvatar.close();
     })
-    .catch(alert)
+    .catch((err) => {
+      err.then((res) => {
+        console.log(res.message)
+      })
+    })
     .finally(() => {
       api.renderLoading(false, buttonSubmit);
     })
@@ -87,7 +91,11 @@ function submitAddCardForm(data, buttonSubmit) {
       formAddCardValidator.deactivateButton();
       popupAddImage.close();
     })
-    .catch(alert)
+    .catch((err) => {
+      err.then((res) => {
+        console.log(res.message)
+      })
+    })
     .finally(() => {
       api.renderLoading(false, buttonSubmit);
     })
@@ -100,7 +108,11 @@ function submitEditProfileForm(data, buttonSubmit) {
       userInfo.setUserInfo(res.name, res.about, urlAvatar);
       popupEditProfile.close();
     })
-    .catch(alert)
+    .catch((err) => {
+      err.then((res) => {
+        console.log(res.message)
+      })
+    })
     .finally(() => {
       api.renderLoading(false, buttonSubmit);
     })
@@ -125,7 +137,11 @@ function createCard(cardInfo) {
             card.deleteCard();
             popupDeleteCard.close();
           })
-          .catch(alert)
+          .catch((err) => {
+            err.then((res) => {
+              console.log(res.message)
+            })
+          })
       });
     },
     userId,
@@ -135,13 +151,21 @@ function createCard(cardInfo) {
           .then(res => {
             card.setLikes(res.likes);
           })
-          .catch(alert)
+          .catch((err) => {
+            err.then((res) => {
+              console.log(res.message)
+            })
+          })
       } else {
         api.addLike(id)
           .then(res => {
             card.setLikes(res.likes);
           })
-          .catch(alert)
+          .catch((err) => {
+            err.then((res) => {
+              console.log(res.message)
+            })
+          })
       }
     }
   );
@@ -156,7 +180,11 @@ Promise.all([api.getUserInfo(), api.getCards()])
     urlAvatar = userData.avatar;
     section.rendererItems(cards);
   })
-  .catch(alert)
+  .catch((err) => {
+    err.then((res) => {
+      console.log(res.message)
+    })
+  })
 
 constants.profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 
