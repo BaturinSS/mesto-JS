@@ -68,7 +68,7 @@ function openEditAvatarPopup() {
 
 function submitEditAvatarForm(data, buttonSubmit) {
   api.editAvatar(data.avatarUrl, buttonSubmit)
-    .then(res => {
+    .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       urlAvatar = res.avatar;
       popupEditAvatar.close();
@@ -86,7 +86,7 @@ function submitEditAvatarForm(data, buttonSubmit) {
 function submitAddCardForm(data, buttonSubmit) {
   const createdSubmit = true;
   api.addCard(data.cardTitle, data.cardLink, buttonSubmit)
-    .then(res => {
+    .then((res) => {
       section.setItem(createCard(res), createdSubmit);
       formAddCardValidator.deactivateButton();
       popupAddImage.close();
@@ -104,7 +104,7 @@ function submitAddCardForm(data, buttonSubmit) {
 function submitEditProfileForm(data, buttonSubmit) {
   const { userName, userProfession } = data;
   api.editUserInfo(userName, userProfession, buttonSubmit)
-    .then(res => {
+    .then((res) => {
       userInfo.setUserInfo(res.name, res.about, urlAvatar);
       popupEditProfile.close();
     })
@@ -148,7 +148,7 @@ function createCard(cardInfo) {
     (id) => {
       if (card.isLiked()) {
         api.deleteLike(id)
-          .then(res => {
+          .then((res) => {
             card.setLikes(res.likes);
           })
           .catch((err) => {
@@ -158,7 +158,7 @@ function createCard(cardInfo) {
           })
       } else {
         api.addLike(id)
-          .then(res => {
+          .then((res) => {
             card.setLikes(res.likes);
           })
           .catch((err) => {
