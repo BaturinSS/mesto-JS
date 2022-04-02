@@ -20,10 +20,6 @@ import { UserInfo } from '../components/UserInfo';
 
 import { api } from '../components/Api';
 
-let userId;
-
-let urlAvatar;
-
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
@@ -47,6 +43,10 @@ const userInfo = new UserInfo({
   profileJobSelector: '.profile__subtitle',
   avatarSelector: '.profile__ellipse'
 });
+
+let userId;
+
+let urlAvatar;
 
 function openEditProfilePopup() {
   const { name, job } = userInfo.getUserInfo();
