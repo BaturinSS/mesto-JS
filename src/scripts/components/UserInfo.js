@@ -20,8 +20,4 @@ export class UserInfo {
     this._avatar.style.backgroundRepeat = 'no-repeat';
     this._avatar.style.backgroundPosition = 'center center';
   };
-
-  getAvatarInfo() {
-
-  }
 };

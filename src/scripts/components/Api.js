@@ -28,7 +28,8 @@ class Api {
       .catch(console.log)
   }
 
-  editUserInfo(name, about) {
+  editUserInfo(name, about, buttonInfo) {
+    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -42,9 +43,13 @@ class Api {
           ? res.json()
           : Promise.reject(`Error editUserInfo(): № ${res.status}`))
       .catch(console.log)
+      .finally(() => {
+        this.renderLoading(false, buttonInfo);
+      })
   }
 
-  addCard(name, link) {
+  addCard(name, link, buttonInfo) {
+    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -58,6 +63,9 @@ class Api {
           ? res.json()
           : Promise.reject(`Error addCard(): № ${res.status}`))
       .catch(console.log)
+      .finally(() => {
+        this.renderLoading(false, buttonInfo);
+      })
   }
 
   deleteCard(id) {
@@ -96,7 +104,8 @@ class Api {
       .catch(console.log)
   }
 
-  editAvatar(avatar) {
+  editAvatar(avatar, buttonSubmit) {
+    this.renderLoading(true, buttonSubmit);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -109,6 +118,17 @@ class Api {
           ? res.json()
           : Promise.reject(`Error editAvatar(): № ${res.status}`))
       .catch(console.log)
+      .finally(() => {
+        this.renderLoading(false, buttonSubmit);
+      })
+  }
+
+  renderLoading(isLoading, { buttonSubmit, textDefault }) {
+    if (isLoading) {
+      buttonSubmit.textContent = 'Сохранение...';
+    } else {
+      buttonSubmit.textContent = textDefault;
+    }
   }
 }
 
