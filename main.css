@@ -36,10 +36,9 @@
 .popup__image-cross{-o-object-fit:contain;object-fit:contain;width:100%}
 .popup__image{margin:0;max-height:75vh;max-width:75vw;-o-object-fit:contain;object-fit:contain;padding:0;vertical-align:bottom}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);color:#000;font-family:Inter,Arial,sans-serif;font-size:14px;font-style:normal;font-weight:400;line-height:17px;margin:0;outline:none;overflow:hidden;padding:0 0 7px;text-overflow:ellipsis;white-space:nowrap}.popup__input::-moz-placeholder{color:#c4c4c4}.popup__input::-webkit-input-placeholder{color:#c4c4c4}
-.popup__save-button{background:#000;border:none;border-radius:2px;color:#fff;font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:400;height:50px;line-height:22px;margin:15px 0 0;padding:0;text-align:center;transition:.3s}.popup__save-button:hover{cursor:pointer;opacity:.8}@media screen and (max-width:550px){.popup__save-button{font-size:14px;height:46px;line-height:17px;margin:45px 0 0}}
-@media screen and (max-width:550px){.popup__save-button_avatar-edit{margin:15px 0 0}}
+.popup__save-button{background:#000;border:none;border-radius:2px;color:#fff;font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:400;height:50px;line-height:22px;margin:15px 0 0;padding:0;text-align:center;transition:.3s}.popup__save-button:hover{cursor:pointer;opacity:.8}@media screen and (max-width:550px){.popup__save-button{font-size:14px;height:46px;line-height:17px;margin:0}}
 .popup__subtitle{bottom:-25px;color:#fff;font-family:Inter,Arial,sans-serif;font-size:12px;font-style:normal;font-weight:400;left:0;line-height:15px;margin:0;padding:0;position:absolute}
-.popup__title{color:#000;font-family:Inter,Arial,sans-serif;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:34px 64px 47px 36px;padding:0;text-align:start;width:330px}@media screen and (max-width:550px){.popup__title{font-size:18px;line-height:22px;margin:25px 22px 75px;width:238px}}
+.popup__title{color:#000;font-family:Inter,Arial,sans-serif;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:34px 64px 47px 36px;padding:0;text-align:start;width:330px}@media screen and (max-width:550px){.popup__title{font-size:18px;line-height:22px;margin:25px 22px 30px;width:238px}}
 .popup__title_delete-confirm{margin-bottom:16px}
 .popup_image-zoom{background:rgba(0,0,0,.9)}
 .popup_opened{opacity:1;visibility:visible}
