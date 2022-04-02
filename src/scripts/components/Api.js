@@ -19,7 +19,7 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this._baseUrl}/cards1`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
       headers: this._headers
     })
