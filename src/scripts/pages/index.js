@@ -66,31 +66,43 @@ function openEditAvatarPopup() {
   popupEditAvatar.open();
 };
 
-function submitEditAvatarForm(data, buttonInfo) {
-  api.editAvatar(data.avatarUrl, buttonInfo)
+function submitEditAvatarForm(data, buttonSubmit) {
+  api.editAvatar(data.avatarUrl, buttonSubmit)
     .then(res => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       urlAvatar = res.avatar;
+      popupEditAvatar.close();
     })
-  popupEditAvatar.close();
+    .catch(alert)
+    .finally(() => {
+      api.renderLoading(false, buttonSubmit);
+    })
 };
 
-function submitAddCardForm(data, buttonInfo) {
+function submitAddCardForm(data, buttonSubmit) {
   const createdSubmit = true;
-  api.addCard(data.cardTitle, data.cardLink, buttonInfo)
+  api.addCard(data.cardTitle, data.cardLink, buttonSubmit)
     .then(res => {
       section.setItem(createCard(res), createdSubmit);
       formAddCardValidator.deactivateButton();
       popupAddImage.close();
     })
+    .catch(alert)
+    .finally(() => {
+      api.renderLoading(false, buttonSubmit);
+    })
 };
 
-function submitEditProfileForm(data, buttonInfo) {
+function submitEditProfileForm(data, buttonSubmit) {
   const { userName, userProfession } = data;
-  api.editUserInfo(userName, userProfession, buttonInfo)
+  api.editUserInfo(userName, userProfession, buttonSubmit)
     .then(res => {
       userInfo.setUserInfo(res.name, res.about, urlAvatar);
       popupEditProfile.close();
+    })
+    .catch(alert)
+    .finally(() => {
+      api.renderLoading(false, buttonSubmit);
     })
 };
 
@@ -111,8 +123,9 @@ function createCard(cardInfo) {
         api.deleteCard(id)
           .then(() => {
             card.deleteCard();
+            popupDeleteCard.close();
           })
-        popupDeleteCard.close();
+          .catch(alert)
       });
     },
     userId,
@@ -122,11 +135,13 @@ function createCard(cardInfo) {
           .then(res => {
             card.setLikes(res.likes);
           })
+          .catch(alert)
       } else {
         api.addLike(id)
           .then(res => {
             card.setLikes(res.likes);
           })
+          .catch(alert)
       }
     }
   );
@@ -134,17 +149,14 @@ function createCard(cardInfo) {
   return cardElement;
 };
 
-api.getUserInfo()
-  .then(res => {
-    userInfo.setUserInfo(res.name, res.about, res.avatar);
-    userId = res._id;
-    urlAvatar = res.avatar;
-  });
-
-api.getCards()
-  .then(initialCards => {
-    section.rendererItems(initialCards);
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+    userId = userData._id;
+    urlAvatar = userData.avatar;
+    section.rendererItems(cards);
   })
+  .catch(alert)
 
 constants.profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
 

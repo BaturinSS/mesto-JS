@@ -4,16 +4,18 @@ class Api {
     this._headers = options.headers;
   }
 
+  _checkResponse(res) {
+    return res.ok
+      ? res.json()
+      : Promise.reject(`Ошибка сервера: "${res.statusText} ${res.status}"`)
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: this._headers
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error getUserInfo(): № ${res.status}`))
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   getCards() {
@@ -21,15 +23,11 @@ class Api {
       method: 'GET',
       headers: this._headers
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error getCards(): № ${res.status}`))
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   editUserInfo(name, about, buttonInfo) {
-    this._renderLoading(true, buttonInfo);
+    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -38,18 +36,11 @@ class Api {
         about
       })
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error editUserInfo(): № ${res.status}`))
-      .catch(console.log)
-      .finally(() => {
-        this._renderLoading(false, buttonInfo);
-      })
+      .then(this._checkResponse)
   }
 
   addCard(name, link, buttonInfo) {
-    this._renderLoading(true, buttonInfo);
+    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -58,14 +49,7 @@ class Api {
         link
       })
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error addCard(): № ${res.status}`))
-      .catch(console.log)
-      .finally(() => {
-        this._renderLoading(false, buttonInfo);
-      })
+      .then(this._checkResponse)
   }
 
   deleteCard(id) {
@@ -73,11 +57,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error deleteCard(): № ${res.status}`))
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   addLike(id) {
@@ -85,11 +65,7 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error addLike(): № ${res.status}`))
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   deleteLike(id) {
@@ -97,15 +73,11 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error deleteLike(): № ${res.status}`))
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   editAvatar(avatar, buttonSubmit) {
-    this._renderLoading(true, buttonSubmit);
+    this.renderLoading(true, buttonSubmit);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -113,17 +85,10 @@ class Api {
         avatar
       })
     })
-      .then(res =>
-        res.ok
-          ? res.json()
-          : Promise.reject(`Error editAvatar(): № ${res.status}`))
-      .catch(console.log)
-      .finally(() => {
-        this._renderLoading(false, buttonSubmit);
-      })
+      .then(this._checkResponse)
   }
 
-  _renderLoading(isLoading, { buttonSubmit, textDefault }) {
+  renderLoading(isLoading, { buttonSubmit, textDefault }) {
     if (isLoading) {
       buttonSubmit.textContent = 'Сохранение...';
     } else {
