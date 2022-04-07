@@ -1,24 +1,24 @@
-import '../../styles/index.css';
+import '../pages/index.css';
 
-import { Card } from '../components/Card';
+import { Card } from '../scripts/components/Card';
 
-import { FormValidator } from '../components/FormValidator';
+import { FormValidator } from '../scripts/components/FormValidator';
 
-import { config } from '../utils/configValidation';
+import { config } from '../scripts/utils/configValidation';
 
-import * as utils from '../utils/utils.js';
+import * as utils from '../scripts/utils/utils.js';
 
-import * as constants from '../utils/constants';
+import * as constants from '../scripts/utils/constants';
 
-import { Section } from '../components/Section';
+import { Section } from '../scripts/components/Section';
 
-import { PopupWithImage } from '../components/PopupWithImage';
+import { PopupWithImage } from '../scripts/components/PopupWithImage';
 
-import { PopupWithForm } from '../components/PopupWithForm';
+import { PopupWithForm } from '../scripts/components/PopupWithForm';
 
-import { UserInfo } from '../components/UserInfo';
+import { UserInfo } from '../scripts/components/UserInfo';
 
-import { api } from '../components/Api';
+import { api } from '../scripts/components/Api';
 
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 
