@@ -66,8 +66,8 @@ function openEditAvatarPopup() {
   popupEditAvatar.open();
 };
 
-function submitEditAvatarForm(data, buttonSubmit) {
-  api.editAvatar(data.avatarUrl, buttonSubmit)
+function submitEditAvatarForm(data) {
+  api.editAvatar(data.avatarUrl)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       urlAvatar = res.avatar;
@@ -79,13 +79,13 @@ function submitEditAvatarForm(data, buttonSubmit) {
       })
     })
     .finally(() => {
-      api.renderLoading(false, buttonSubmit);
+      popupEditAvatar.renderLoading(false);
     })
 };
 
-function submitAddCardForm(data, buttonSubmit) {
+function submitAddCardForm(data) {
   const createdSubmit = true;
-  api.addCard(data.cardTitle, data.cardLink, buttonSubmit)
+  api.addCard(data.cardTitle, data.cardLink)
     .then((res) => {
       section.setItem(createCard(res), createdSubmit);
       formAddCardValidator.deactivateButton();
@@ -97,13 +97,12 @@ function submitAddCardForm(data, buttonSubmit) {
       })
     })
     .finally(() => {
-      api.renderLoading(false, buttonSubmit);
+      popupAddImage.renderLoading(false);
     })
 };
 
-function submitEditProfileForm(data, buttonSubmit) {
-  const { userName, userProfession } = data;
-  api.editUserInfo(userName, userProfession, buttonSubmit)
+function submitEditProfileForm({ userName, userProfession }) {
+  api.editUserInfo(userName, userProfession)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, urlAvatar);
       popupEditProfile.close();
@@ -114,7 +113,7 @@ function submitEditProfileForm(data, buttonSubmit) {
       })
     })
     .finally(() => {
-      api.renderLoading(false, buttonSubmit);
+      popupEditProfile.renderLoading(false);
     })
 };
 

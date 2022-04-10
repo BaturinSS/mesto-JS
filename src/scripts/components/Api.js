@@ -27,7 +27,6 @@ class Api {
   }
 
   editUserInfo(name, about, buttonInfo) {
-    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -40,7 +39,6 @@ class Api {
   }
 
   addCard(name, link, buttonInfo) {
-    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -77,7 +75,6 @@ class Api {
   }
 
   editAvatar(avatar, buttonInfo) {
-    this.renderLoading(true, buttonInfo);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -86,14 +83,6 @@ class Api {
       })
     })
       .then(this._checkResponse)
-  }
-
-  renderLoading(isLoading, { buttonSubmit, textDefault }) {
-    if (isLoading) {
-      buttonSubmit.textContent = 'Сохранение...';
-    } else {
-      buttonSubmit.textContent = textDefault;
-    }
   }
 }
 
