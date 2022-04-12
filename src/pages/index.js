@@ -34,7 +34,7 @@ const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardFor
 
 const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
 
-const popupDeleteCard = new PopupWithForm('.popup_type_delete-confirm');
+//const popupDeleteCard = new PopupWithForm('.popup_type_delete-confirm');
 
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar-edit', submitEditAvatarForm);
 
@@ -66,8 +66,8 @@ function openEditAvatarPopup() {
   popupEditAvatar.open();
 };
 
-function submitEditAvatarForm(data) {
-  api.editAvatar(data.avatarUrl)
+function submitEditAvatarForm({ avatarUrl }) {
+  api.editAvatar(avatarUrl)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       urlAvatar = res.avatar;
@@ -88,7 +88,6 @@ function submitAddCardForm(data) {
   api.addCard(data.cardTitle, data.cardLink)
     .then((res) => {
       section.setItem(createCard(res), createdSubmit);
-      formAddCardValidator.deactivateButton();
       popupAddImage.close();
     })
     .catch((err) => {

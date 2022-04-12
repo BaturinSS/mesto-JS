@@ -5,7 +5,6 @@
   margin: 0;
   background-image: url(../../../images/heart.svg);
   background-color: #FFFFFF;
-  background-size: contain;
   background-position: center;
   transition: 0.5s;
   border: none;

@@ -25,6 +25,7 @@ export class Card {
     this._element = this._getTemplate();
     this._elementImage = this._element.querySelector('.elements__mask-group');
     this._likeButton = this._element.querySelector('.elements__group');
+    this._likeCountElement = this._element.querySelector('.elements__number-likes');
     this._setEventListeners();
     this._element.querySelector('.elements__title').textContent = this._name;
     this._elementImage.src = this._link;
@@ -64,8 +65,7 @@ export class Card {
 
   setLikes(newLikes) {
     this._likes = newLikes;
-    const likeCountElement = this._element.querySelector('.elements__number-likes');
-    likeCountElement.textContent = this._likes.length;
+    this._likeCountElement.textContent = this._likes.length;
     if (this.isLiked()) {
       this._fillLike()
     } else {
