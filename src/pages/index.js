@@ -21,11 +21,11 @@ const section = new Section(addCard, '.elements__cards');
 
 const popupWithImage = new PopupWithImage('.popup_type_image-zoom');
 
-const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm, 'Добавление...');
-const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm, 'Сохранение...');
-const popupEditAvatar = new PopupWithForm('.popup_type_avatar-edit', submitEditAvatarForm, 'Сохранение...');
+const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm, 'Добавляем карточку...');
+const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm, 'Сохраняем...');
+const popupEditAvatar = new PopupWithForm('.popup_type_avatar-edit', submitEditAvatarForm, 'Меняем аватар...');
 
-const popupDeleteCard = new PopupWithConfirm('.popup_type_delete-confirm', 'Удаление...');
+const popupDeleteCard = new PopupWithConfirm('.popup_type_delete-confirm', 'Удаляем карточку...');
 
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
