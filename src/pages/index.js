@@ -1,52 +1,31 @@
 import '../pages/index.css';
-
 import { Card } from '../scripts/components/Card';
-
 import { FormValidator } from '../scripts/components/FormValidator';
-
 import { config } from '../scripts/utils/configValidation';
-
 import * as utils from '../scripts/utils/utils.js';
-
 import * as constants from '../scripts/utils/constants';
-
 import { Section } from '../scripts/components/Section';
-
 import { PopupWithImage } from '../scripts/components/PopupWithImage';
-
 import { PopupWithForm } from '../scripts/components/PopupWithForm';
-
+import { PopupWithConfirm } from '../scripts/components/PopupWithConfirm';
 import { UserInfo } from '../scripts/components/UserInfo';
-
 import { api } from '../scripts/components/Api';
 
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
-
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
-
 const formEditAvatarValidator = new FormValidator(config, constants.formEditAvatar);
-
 const section = new Section(addCard, '.elements__cards');
-
 const popupWithImage = new PopupWithImage('.popup_type_image-zoom');
-
-const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm);
-
-const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm);
-
-//const popupDeleteCard = new PopupWithForm('.popup_type_delete-confirm');
-
-const popupEditAvatar = new PopupWithForm('.popup_type_avatar-edit', submitEditAvatarForm);
-
+const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm, 'Создание...');
+const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm, 'Сохранение...');
+const popupDeleteCard = new PopupWithConfirm('.popup_type_delete-confirm', 'Удаление...');
+const popupEditAvatar = new PopupWithForm('.popup_type_avatar-edit', submitEditAvatarForm, 'Сохранение...');
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
   profileJobSelector: '.profile__subtitle',
   avatarSelector: '.profile__ellipse'
 });
-
 let userId;
-
-let urlAvatar;
 
 function openEditProfilePopup() {
   const { name, job } = userInfo.getUserInfo();
@@ -70,12 +49,11 @@ function submitEditAvatarForm({ avatarUrl }) {
   api.editAvatar(avatarUrl)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
-      urlAvatar = res.avatar;
       popupEditAvatar.close();
     })
     .catch((err) => {
       err.then((res) => {
-        console.log(res.message)
+        alert(res.message)
       })
     })
     .finally(() => {
@@ -83,16 +61,21 @@ function submitEditAvatarForm({ avatarUrl }) {
     })
 };
 
+function deleteLastCard() {
+  document.querySelector('.elements__cards').lastElementChild.remove();
+}
+
 function submitAddCardForm(data) {
   const createdSubmit = true;
   api.addCard(data.cardTitle, data.cardLink)
     .then((res) => {
       section.setItem(createCard(res), createdSubmit);
+      deleteLastCard();
       popupAddImage.close();
     })
     .catch((err) => {
       err.then((res) => {
-        console.log(res.message)
+        alert(res.message)
       })
     })
     .finally(() => {
@@ -103,12 +86,12 @@ function submitAddCardForm(data) {
 function submitEditProfileForm({ userName, userProfession }) {
   api.editUserInfo(userName, userProfession)
     .then((res) => {
-      userInfo.setUserInfo(res.name, res.about, urlAvatar);
+      userInfo.setUserInfo(res.name, res.about, res.avatar);
       popupEditProfile.close();
     })
     .catch((err) => {
       err.then((res) => {
-        console.log(res.message)
+        alert(res.message)
       })
     })
     .finally(() => {
@@ -116,8 +99,8 @@ function submitEditProfileForm({ userName, userProfession }) {
     })
 };
 
-function addCard(cardInfo) {
-  section.setItem(createCard(cardInfo));
+function addCard(cardInfo, createdSubmit) {
+  section.setItem(createCard(cardInfo), createdSubmit);
 };
 
 function createCard(cardInfo) {
@@ -134,12 +117,22 @@ function createCard(cardInfo) {
           .then(() => {
             card.deleteCard();
             popupDeleteCard.close();
+            api.getCards()
+              .then(cardList => {
+                addCard(cardList[cardList.length - 1], false);
+              })
+              .catch((err) => {
+                err.then((res) => {
+                  alert(res.message)
+                })
+              })
           })
           .catch((err) => {
             err.then((res) => {
-              console.log(res.message)
+              alert(res.message)
             })
           })
+          .finally(() => { popupDeleteCard.renderLoading(false); })
       });
     },
     userId,
@@ -175,33 +168,24 @@ Promise.all([api.getUserInfo(), api.getCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
     userId = userData._id;
-    urlAvatar = userData.avatar;
     section.rendererItems(cards);
   })
   .catch((err) => {
     err.then((res) => {
-      console.log(res.message)
+      alert(res.message)
     })
   })
 
 constants.profileOpenPopupButtonEdit.addEventListener('click', openEditProfilePopup);
-
 constants.profileOpenPopupButtonAdd.addEventListener('click', openAddImagePopup);
-
 constants.avatarOpenPopupButtonEdit.addEventListener('click', openEditAvatarPopup);
 
 formAddCardValidator.enableValidation();
-
 formEditProfileValidator.enableValidation();
-
 formEditAvatarValidator.enableValidation();
 
 popupWithImage.setEventListeners();
-
 popupAddImage.setEventListeners();
-
 popupEditProfile.setEventListeners();
-
 popupDeleteCard.setEventListeners();
-
 popupEditAvatar.setEventListeners();

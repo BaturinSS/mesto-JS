@@ -2,11 +2,14 @@ export class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
+    this._buttonSubmit = this._popup.querySelector('.popup__save-button');
+    this._buttonDefault = this._buttonSubmit;
   };
 
   open() {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
+    this._buttonSubmit.removeAttribute('disabled');
   };
 
   close() {
