@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 618px) {
   .popup__save-button {
     height: 46px;
     margin: 0;

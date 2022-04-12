@@ -2,7 +2,7 @@
   top: -75px;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 618px) {
   .popup_type_delete-confirm {
     top: 0;
   }
