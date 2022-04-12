@@ -23,22 +23,23 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._element.querySelector('.elements__title').textContent = this._name;
+    this._deleteButton = this._element.querySelector('.elements__delete');
     this._elementImage = this._element.querySelector('.elements__mask-group');
     this._likeButton = this._element.querySelector('.elements__group');
     this._likeCountElement = this._element.querySelector('.elements__number-likes');
     this._setEventListeners();
-    this._element.querySelector('.elements__title').textContent = this._name;
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
     this.setLikes(this._likes);
     if (this._ownerId !== this._userId) {
-      this._element.querySelector('.elements__delete').style.display = 'none';
+      this._deleteButton.style.display = 'none';
     };
     return this._element;
   };
 
   _setEventListeners() {
-    this._element.querySelector('.elements__delete').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._handleDeleteClick(this._id);
     });
     this._likeButton.addEventListener('click', () => this._handleLikeClick(this._id));
@@ -59,8 +60,7 @@ export class Card {
   };
 
   isLiked() {
-    const userHasLikedCard = this._likes.find(user => user._id === this._userId);
-    return userHasLikedCard;
+    return this._likes.find(user => user._id === this._userId);
   }
 
   setLikes(newLikes) {

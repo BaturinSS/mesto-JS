@@ -152,7 +152,7 @@ function createCard(cardInfo) {
           })
           .catch((err) => {
             err.then((res) => {
-              console.log(res.message)
+              alert(res.message)
             })
           })
       } else {
@@ -162,7 +162,7 @@ function createCard(cardInfo) {
           })
           .catch((err) => {
             err.then((res) => {
-              console.log(res.message)
+              alert(res.message)
             })
           })
       }
