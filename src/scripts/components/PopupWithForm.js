@@ -5,6 +5,7 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleSabmit = handleSabmit;
     this._titleButton = titleButton;
+    this._textDefault = this._buttonSubmit.textContent;
     this._form = this._popup.querySelector('.popup__form');
     this._inputs = [...this._form.querySelectorAll('.popup__input')];
   };
@@ -36,7 +37,7 @@ export class PopupWithForm extends Popup {
       this._buttonSubmit.textContent = this._titleButton;
       this._buttonSubmit.setAttribute('disabled', 'true');
     } else {
-      this._buttonSubmit.textContent = this._buttonDefault.textContent;
+      this._buttonSubmit.textContent = this._textDefault;
     }
   }
 };
