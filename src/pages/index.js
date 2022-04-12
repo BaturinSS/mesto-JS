@@ -1,30 +1,38 @@
 import '../pages/index.css';
+
 import { Card } from '../scripts/components/Card';
 import { FormValidator } from '../scripts/components/FormValidator';
-import { config } from '../scripts/utils/configValidation';
-import * as utils from '../scripts/utils/utils.js';
-import * as constants from '../scripts/utils/constants';
 import { Section } from '../scripts/components/Section';
 import { PopupWithImage } from '../scripts/components/PopupWithImage';
 import { PopupWithForm } from '../scripts/components/PopupWithForm';
 import { PopupWithConfirm } from '../scripts/components/PopupWithConfirm';
 import { UserInfo } from '../scripts/components/UserInfo';
+
+import { config } from '../scripts/utils/configValidation';
+import * as utils from '../scripts/utils/utils.js';
+import * as constants from '../scripts/utils/constants';
 import { api } from '../scripts/components/Api';
 
 const formAddCardValidator = new FormValidator(config, constants.formAddCard);
 const formEditProfileValidator = new FormValidator(config, constants.formEditProfile);
 const formEditAvatarValidator = new FormValidator(config, constants.formEditAvatar);
+
 const section = new Section(addCard, '.elements__cards');
+
 const popupWithImage = new PopupWithImage('.popup_type_image-zoom');
-const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm, 'Создание...');
+
+const popupAddImage = new PopupWithForm('.popup_type_card-add', submitAddCardForm, 'Добавление...');
 const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', submitEditProfileForm, 'Сохранение...');
-const popupDeleteCard = new PopupWithConfirm('.popup_type_delete-confirm', 'Удаление...');
 const popupEditAvatar = new PopupWithForm('.popup_type_avatar-edit', submitEditAvatarForm, 'Сохранение...');
+
+const popupDeleteCard = new PopupWithConfirm('.popup_type_delete-confirm', 'Удаление...');
+
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
   profileJobSelector: '.profile__subtitle',
   avatarSelector: '.profile__ellipse'
 });
+
 let userId;
 
 function openEditProfilePopup() {
