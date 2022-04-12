@@ -36,9 +36,7 @@ const userInfo = new UserInfo({
 let userId;
 
 function openEditProfilePopup() {
-  const { name, job } = userInfo.getUserInfo();
-  constants.inputUserName.value = name;
-  constants.inputUserProfession.value = job;
+  popupEditProfile.setInputValues(userInfo.getUserInfo());
   formEditProfileValidator.clearErrorsForm();
   popupEditProfile.open();
 };
@@ -91,8 +89,8 @@ function submitAddCardForm(data) {
     })
 };
 
-function submitEditProfileForm({ userName, userProfession }) {
-  api.editUserInfo(userName, userProfession)
+function submitEditProfileForm({ name, job }) {
+  api.editUserInfo(name, job)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       popupEditProfile.close();

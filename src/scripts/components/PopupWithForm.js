@@ -40,4 +40,10 @@ export class PopupWithForm extends Popup {
       this._buttonSubmit.textContent = this._textDefault;
     }
   }
+
+  setInputValues(data) {
+    this._inputs.forEach(input => {
+      input.value = data[input.name]
+    })
+  }
 };
