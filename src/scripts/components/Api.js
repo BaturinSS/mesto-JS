@@ -26,7 +26,7 @@ class Api {
       .then(this._checkResponse)
   }
 
-  editUserInfo(name, about, buttonInfo) {
+  editUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -38,7 +38,7 @@ class Api {
       .then(this._checkResponse)
   }
 
-  addCard(name, link, buttonInfo) {
+  addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,

@@ -52,58 +52,31 @@ function openEditAvatarPopup() {
 };
 
 function submitEditAvatarForm({ avatarUrl }) {
-  api.editAvatar(avatarUrl)
+  return api.editAvatar(avatarUrl)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
-      popupEditAvatar.close();
     })
-    .catch((err) => {
-      err.then((res) => {
-        alert(res.message)
-      })
+};
+
+function submitAddCardForm(data) {
+  const createdSubmit = true;
+  return api.addCard(data.cardTitle, data.cardLink)
+    .then((res) => {
+      addCard(res, createdSubmit);
+      deleteLastCard();
     })
-    .finally(() => {
-      popupEditAvatar.renderLoading(false);
+};
+
+function submitEditProfileForm({ name, job }) {
+  return api.editUserInfo(name, job)
+    .then((res) => {
+      userInfo.setUserInfo(res.name, res.about, res.avatar);
     })
 };
 
 function deleteLastCard() {
   document.querySelector('.elements__cards').lastElementChild.remove();
 }
-
-function submitAddCardForm(data) {
-  const createdSubmit = true;
-  api.addCard(data.cardTitle, data.cardLink)
-    .then((res) => {
-      section.setItem(createCard(res), createdSubmit);
-      deleteLastCard();
-      popupAddImage.close();
-    })
-    .catch((err) => {
-      err.then((res) => {
-        alert(res.message)
-      })
-    })
-    .finally(() => {
-      popupAddImage.renderLoading(false);
-    })
-};
-
-function submitEditProfileForm({ name, job }) {
-  api.editUserInfo(name, job)
-    .then((res) => {
-      userInfo.setUserInfo(res.name, res.about, res.avatar);
-      popupEditProfile.close();
-    })
-    .catch((err) => {
-      err.then((res) => {
-        alert(res.message)
-      })
-    })
-    .finally(() => {
-      popupEditProfile.renderLoading(false);
-    })
-};
 
 function addCard(cardInfo, createdSubmit) {
   section.setItem(createCard(cardInfo), createdSubmit);

@@ -8,6 +8,13 @@ export class PopupWithConfirm extends Popup {
     this._textDefault = this._buttonSubmit.textContent;
   }
 
+  open() {
+    super.open();
+    if (this._buttonSubmit.disabled) {
+      this._buttonSubmit.removeAttribute('disabled');
+    }
+  }
+
   changeSubmitHandler(newSubmitHandler) {
     this._handleSubmit = newSubmitHandler;
   }
