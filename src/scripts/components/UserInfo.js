@@ -15,11 +15,6 @@ export class UserInfo {
   setUserInfo(title, job, avatar) {
     this._nameElement.textContent = title;
     this._jobElement.textContent = job;
-    //this._avatar.src = avatar;
-
-    this._avatar.style.background = `url(${avatar})`;
-    this._avatar.style.backgroundSize = 'cover';
-    this._avatar.style.backgroundRepeat = 'no-repeat';
-    this._avatar.style.backgroundPosition = 'center center';
+    this._avatar.src = avatar;
   };
 };

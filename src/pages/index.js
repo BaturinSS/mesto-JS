@@ -30,7 +30,7 @@ const popupDeleteCard = new PopupWithConfirm('.popup_type_delete-confirm', 'Уд
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
   profileJobSelector: '.profile__subtitle',
-  avatarSelector: '.profile__ellipse'
+  avatarSelector: '.plofile__avatar'
 });
 
 let userId;
