@@ -1,4 +1,4 @@
-# [Проект: Место России.](https://baturinss.github.io/mesto/)
+# [Проект: Место. Россия.](https://baturinss.github.io/mesto/)
 https://user-images.githubusercontent.com/94468513/163075115-f2bbe1a0-51f3-4118-b5f6-601b5370f4c2.mp4
  ## 📃Краткое описание:
 </br>
