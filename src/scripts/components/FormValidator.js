@@ -15,11 +15,11 @@ export class FormValidator {
     this._arrayInputsFormActive.forEach((inputElement) => {
       inputElement.classList.remove(this._inputErrorClass);
       this._disableErrorText(inputElement);
-      this._changingButtonState();
     });
+    this._changingButtonState();
   };
 
-  deactivateButton() {
+  _deactivateButton() {
     this._submitButton.setAttribute('disabled', true);
     this._submitButton.classList.add(this._inactiveButtonClass);
   };
@@ -40,7 +40,7 @@ export class FormValidator {
     if (!validityFormActive) {
       this._activationButton();
     } else {
-      this.deactivateButton();
+      this._deactivateButton();
     };
   };
 

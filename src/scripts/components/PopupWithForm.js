@@ -10,13 +10,6 @@ export class PopupWithForm extends Popup {
     this._inputs = [...this._form.querySelectorAll('.popup__input')];
   };
 
-  open() {
-    super.open();
-    if (this._buttonSubmit.disabled) {
-      this._buttonSubmit.removeAttribute('disabled');
-    }
-  }
-
   close() {
     super.close();
     this._form.reset();
