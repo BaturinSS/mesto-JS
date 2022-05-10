@@ -33,6 +33,11 @@ const userInfo = new UserInfo({
   avatarSelector: '.plofile__avatar'
 });
 
+const autoDate = () => {
+  document.querySelector('.footer__copyright')
+    .textContent = `© 2022 - ${new Date().getFullYear()}. Батурин Сергей`;
+}
+
 let userId;
 
 function openEditProfilePopup() {
@@ -168,3 +173,5 @@ popupAddImage.setEventListeners();
 popupEditProfile.setEventListeners();
 popupDeleteCard.setEventListeners();
 popupEditAvatar.setEventListeners();
+
+autoDate();
