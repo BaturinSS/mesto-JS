@@ -35,7 +35,7 @@ const userInfo = new UserInfo({
 
 const autoDate = () => {
   document.querySelector('.footer__copyright')
-    .textContent = `© ${new Date().getFullYear()}. Батурин Сергей`;
+    .textContent = `© 2022 - ${new Date().getFullYear()}. Батурин Сергей`;
 }
 
 let userId;
