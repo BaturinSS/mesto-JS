@@ -9,7 +9,6 @@ import { PopupWithConfirm } from '../scripts/components/PopupWithConfirm';
 import { UserInfo } from '../scripts/components/UserInfo';
 
 import { config } from '../scripts/utils/configValidation';
-import * as utils from '../scripts/utils/utils.js';
 import * as constants from '../scripts/utils/constants';
 import { api } from '../scripts/components/Api';
 
